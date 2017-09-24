@@ -1,0 +1,47 @@
+{
+  "extends": "airbnb",
+  "plugins": ["react", "jsx-a11y", "import"],
+  "settings": {
+    "import/resolver": {
+      "eslint-import-resolver-webpack": {
+        "config": "webpack.base.config.js"
+      }
+    }
+  },
+  "rules": {
+    "jsx-a11y/href-no-hash": 0
+  },
+  "globals": {
+    "__DEV__": false,
+    "__PROD__": false,
+  },
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "allowImportExportEverywhere": true
+  },
+  "overrides": [
+    {
+      "files": ["*.stories.jsx"],
+      "rules": {
+        "import/no-extraneous-dependencies": [2, {
+          "devDependencies": true
+        }]
+      }
+    },
+    {
+      "files": ["*.spec.js", "*.spec.jsx"],
+      "plugins": ["react", "jsx-a11y", "import", "jest"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "import/no-extraneous-dependencies": [2, {
+          "devDependencies": true
+        }]
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+build/
+coverage/
+node_modules/
+stats.json
+.idea/
+.env
+
+*.log
+npm-debug.log*

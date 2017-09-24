@@ -1,0 +1,27 @@
+$_pagination-box-shadow-color: rgba(0, 0, 0, .1);
+
+.Pagination {
+  box-shadow: 0 1px 2px $_pagination-box-shadow-color;
+  height: $header-height;
+  text-align: center;
+  width: 100%;
+}
+
+.Pagination__inner {
+  display: inline-block;
+  padding: 18px 0;
+}
+
+.Pagination__button {
+  background-color: transparent;
+  border: 0;
+}
+
+.Pagination__button--disabled {
+  color: $color-gray;
+}
+
+.Pagination__number {
+  display: inline-block;
+  margin: 0 20px;
+}

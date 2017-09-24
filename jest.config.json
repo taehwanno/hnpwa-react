@@ -1,0 +1,29 @@
+{
+  "collectCoverageFrom": [
+    "app/**/*.{js,jsx}",
+    "!**/*.stories.{js,jsx}"
+  ],
+  "globals": {
+    "__DEV__": false,
+    "__PROD__": false
+  },
+  "moduleFileExtensions": ["js", "jsx"],
+  "moduleNameMapper": {
+    "\\.(css|scss)$": "<rootDir>/test/__mocks__/styleMock.js",
+    "^components(.*)$": "<rootDir>/app/components$1",
+    "^routes(.*)$": "<rootDir>/app/routes$1",
+    "^store(.*)$": "<rootDir>/app/store$1"
+  },
+  "roots": [
+    "<rootDir>/app",
+    "<rootDir>/test"
+  ],
+  "setupFiles": [
+    "<rootDir>/test/fetch.js"
+  ],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "transformIgnorePatterns": [
+    "node_modules/?!(autotrack|dom-utils)",
+    "node_modules/?!(react-router/es)"
+  ]
+}

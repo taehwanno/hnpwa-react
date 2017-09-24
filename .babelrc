@@ -1,0 +1,27 @@
+{
+  "presets": [["es2015", { "modules": false }], "react", "stage-2"],
+  "plugins": [
+    "react-hot-loader/babel",
+    "syntax-dynamic-import",
+    [
+      "transform-imports", {
+        "react-router-dom": {
+          "transform": "react-router-dom/es/${member}",
+          "preventFullImport": true
+        },
+        "lodash": {
+          "transform": "lodash/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "dynamic-import-node",
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
+}

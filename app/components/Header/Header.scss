@@ -1,0 +1,35 @@
+.Header {
+  background-color: $color-main;
+  box-sizing: border-box;
+  height: $header-height;
+  padding: 18px 70px;
+  width: 100%;
+}
+
+.Header__navlink {
+  color: $color-white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.Header__navlink--active {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.Header__logo {
+  float: right;
+  height: 100%;
+}
+
+@media (max-width: 450px) {
+  .Header {
+    padding: 18px 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .Header__logo {
+    display: none;
+  }
+}
