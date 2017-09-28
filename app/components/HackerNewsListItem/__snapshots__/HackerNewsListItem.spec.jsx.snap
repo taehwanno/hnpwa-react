@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HackerNewsListItem /> should match snapshot when render default 1`] = `
+<div
+  className="HackerNewsListItem"
+>
+  <a
+    className="HackerNewsListItem__title"
+    href=""
+    target="__blank"
+  />
+  <div
+    className="HackerNewsListItem__info"
+  >
+    0
+     points by 
+     
+    <Link
+      replace={false}
+      to="/user/"
+    />
+     
+     | 
+     
+    <Link
+      replace={false}
+      to="/item/0"
+    >
+      0
+       comments
+    </Link>
+  </div>
+</div>
+`;
