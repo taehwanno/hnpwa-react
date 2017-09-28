@@ -2,8 +2,8 @@ import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import * as actions from './actions';
-import * as ACTIONS from './actionTypes';
+import * as actions from '../actions';
+import * as ACTIONS from '../actionTypes';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

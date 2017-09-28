@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import * as selectors from './selectors';
+import * as selectors from '../selectors';
 
 describe('selectors', () => {
   const state = Immutable.fromJS({
