@@ -27,8 +27,12 @@ class LocationPagination extends React.Component {
   }
 
   componentWillMount() {
-    const [type, page] = LocationPagination.getRequestQuery(this.props.location.pathname);
-    this.props.onPaginate(type, parseInt(page, 10));
+    const [type, stringPage] = LocationPagination.getRequestQuery(this.props.location.pathname);
+    const page = parseInt(stringPage, 10);
+
+    if (type && !Number.isNaN(page)) {
+      this.props.onPaginate(type, parseInt(page, 10));
+    }
   }
 
   componentWillReceiveProps(nextProps) {

@@ -22,6 +22,12 @@ describe('<LocationPagination />', () => {
     expect(onPaginate.mock.calls.length).toBe(1);
   });
 
+  it('should not calls props.onPaginate when location.pathname === \'/\' in componentWillMount', () => {
+    const onPaginate = jest.fn();
+    shallow(<LocationPagination location={{ pathname: '/' }} onPaginate={onPaginate} />);
+    expect(onPaginate.mock.calls.length).toBe(0);
+  });
+
   it('should calls props.onPaginate when props.location.pathname is changed in componentWillReceiveProps', () => {
     const onPaginate = jest.fn();
     const wrapper = shallow(<LocationPagination location={location} onPaginate={onPaginate} />);
