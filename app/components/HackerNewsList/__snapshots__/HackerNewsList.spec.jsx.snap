@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HackerNewsList /> should match snapshot when render default 1`] = `
+<ul
+  className="HackerNewsList"
+/>
+`;
+
+exports[`<HackerNewsList /> should match snapshot when render feeds 1`] = `
+<ul
+  className="HackerNewsList"
+>
+  <li
+    className="HackerNewsList__item"
+    key="15350263"
+  >
+    <span
+      className="HackerNewsList__index"
+    >
+      1
+    </span>
+    <HackerNewsListItem
+      commentsCount={79}
+      domain="observer.com"
+      id={15350263}
+      points={172}
+      time={1506534023}
+      timeAgo="20 hours ago"
+      title="Keybase's mission is to make encryption mainstream"
+      type="link"
+      url="http://observer.com/2017/09/keybase-max-krohn-chris-coyne-okcupid/"
+      user="BradyDale"
+    />
+  </li>
+  <li
+    className="HackerNewsList__item"
+    key="15351433"
+  >
+    <span
+      className="HackerNewsList__index"
+    >
+      2
+    </span>
+    <HackerNewsListItem
+      commentsCount={131}
+      domain="nytimes.com"
+      id={15351433}
+      points={74}
+      time={1506540664}
+      timeAgo="18 hours ago"
+      title="What happens after a defendant is found not guilty by reason of insanity?"
+      type="link"
+      url="https://www.nytimes.com/2017/09/27/magazine/when-not-guilty-is-a-life-sentence.html"
+      user="mcone"
+    />
+  </li>
+</ul>
+`;

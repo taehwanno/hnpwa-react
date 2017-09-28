@@ -1,0 +1,18 @@
+.HackerNewsList {
+  padding-left: 20px;
+
+  > li {
+    list-style: none;
+  }
+}
+
+.HackerNewsList__item {
+  margin: 30px 0;
+}
+
+.HackerNewsList__index {
+  font-size: 2em;
+  position: absolute;
+  text-align: center;
+  width: 1em;
+}
