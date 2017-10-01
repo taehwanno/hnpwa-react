@@ -1,41 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Pagination /> should have .Pagination__button--disabled when props.currentPage === props.maxPage 1`] = `
-<div
-  className="Pagination"
->
-  <div
-    className="Pagination__inner"
-  >
-    <button
-      className="Pagination__button"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      &lt;
-       Prev
-    </button>
-    <div
-      className="Pagination__number"
-    >
-      10
-       / 
-      10
-    </div>
-    <button
-      className="Pagination__button Pagination__button--disabled"
-      disabled={true}
-      onClick={[Function]}
-      type="button"
-    >
-      &gt;
-       Next
-    </button>
-  </div>
-</div>
-`;
-
 exports[`<Pagination /> should match snapshot when render default 1`] = `
 <div
   className="Pagination"
@@ -52,21 +16,14 @@ exports[`<Pagination /> should match snapshot when render default 1`] = `
       &lt;
        Prev
     </button>
-    <div
-      className="Pagination__number"
-    >
-      1
-       / 
-      1
-    </div>
+     
     <button
-      className="Pagination__button Pagination__button--disabled"
-      disabled={true}
+      className="Pagination__button"
       onClick={[Function]}
       type="button"
     >
+      Next 
       &gt;
-       Next
     </button>
   </div>
 </div>

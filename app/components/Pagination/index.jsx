@@ -6,26 +6,19 @@ import './Pagination.scss';
 
 const propTypes = {
   currentPage: PropTypes.number,
-  maxPage: PropTypes.number,
   onPaginate: PropTypes.func,
 };
 
 const defaultProps = {
   currentPage: 1,
-  maxPage: 1,
   onPaginate() {},
 };
 
-function Pagination({ currentPage, maxPage, onPaginate }) {
+function Pagination({ currentPage, onPaginate }) {
   const prevDisabled = currentPage === 1;
-  const nextDisabeld = currentPage === maxPage;
 
   const prevButtonClassName = cx('Pagination__button', {
     'Pagination__button--disabled': prevDisabled,
-  });
-
-  const nextButtonClassName = cx('Pagination__button', {
-    'Pagination__button--disabled': nextDisabeld,
   });
 
   return (
@@ -39,14 +32,13 @@ function Pagination({ currentPage, maxPage, onPaginate }) {
         >
           {'<'} Prev
         </button>
-        <div className="Pagination__number">{currentPage} / {maxPage}</div>
+        {' '}
         <button
-          disabled={nextDisabeld}
-          className={nextButtonClassName}
+          className="Pagination__button"
           type="button"
           onClick={() => onPaginate(currentPage + 1)}
         >
-          {'>'} Next
+          Next {'>'}
         </button>
       </div>
     </div>

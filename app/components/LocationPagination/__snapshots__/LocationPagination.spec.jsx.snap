@@ -4,7 +4,6 @@ exports[`<LocationPagination /> should match snapshot when render default 1`] = 
 <Pagination
   curentPage={1}
   currentPage={1}
-  maxPage={1}
   onPaginate={[Function]}
 />
 `;

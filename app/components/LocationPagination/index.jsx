@@ -6,13 +6,11 @@ import Pagination from 'components/Pagination';
 const propTypes = {
   currentPage: PropTypes.number,
   location: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
-  maxPage: PropTypes.number,
   onPaginate: PropTypes.func,
 };
 
 const defaultProps = {
   currentPage: 1,
-  maxPage: 1,
   onPaginate() {},
 };
 
@@ -48,11 +46,11 @@ class LocationPagination extends React.Component {
   }
 
   render() {
-    const { currentPage, maxPage } = this.props;
+    const { currentPage } = this.props;
+
     return (
       <Pagination
         curentPage={currentPage}
-        maxPage={maxPage}
         onPaginate={this.handlePaginate}
       />
     );

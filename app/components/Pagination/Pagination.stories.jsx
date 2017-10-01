@@ -8,7 +8,7 @@ const stories = storiesOf('Pagination', module);
 class PaginationWrapper extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { currentPage: 1, maxPage: 10 };
+    this.state = { currentPage: 1 };
     this.handlePaginate = this.handlePaginate.bind(this);
   }
 
@@ -20,7 +20,6 @@ class PaginationWrapper extends React.Component {
     return (
       <Pagination
         currentPage={this.state.currentPage}
-        maxPage={this.state.maxPage}
         onPaginate={this.handlePaginate}
       />
     );

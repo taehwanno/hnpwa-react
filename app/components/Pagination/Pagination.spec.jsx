@@ -9,12 +9,6 @@ describe('<Pagination />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should have .Pagination__button--disabled when props.currentPage === props.maxPage', () => {
-    const wrapper = shallow(<Pagination currentPage={10} maxPage={10} />);
-    expect(wrapper.find('.Pagination__button--disabled').length).toBe(1);
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it('should calls onPaginate with currentPage - 1 when simulate prev button click event', () => {
     const currentPage = 3;
     const onPaginate = jest.fn();
