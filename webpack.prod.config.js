@@ -68,7 +68,10 @@ module.exports = webpackMerge(webpackBaseConfig, {
       dry: false,
       verbose: true,
     }),
-    new ExtractTextPlugin('app.bundle-[chunkhash].css'),
+    new ExtractTextPlugin({
+      allChunks: true,
+      filename: 'app.bundle-[chunkhash].css',
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor'],
       filename: '[name].bundle-[chunkhash].js',
