@@ -45,3 +45,35 @@ export function fetchHackerNews(type, page) {
       .catch(error => dispatch(hackerNewsFetchFailure(error)));
   };
 }
+
+export function hackerUserFetchRequest(id) {
+  return {
+    type: ACTIONS.HACKER_USER_FETCH_REQUEST,
+    payload: id,
+  };
+}
+
+export function hackerUserFetchSuccess(data) {
+  return {
+    type: ACTIONS.HACKER_USER_FETCH_SUCCESS,
+    payload: data,
+  };
+}
+
+export function hackerUserFetchFailure(error) {
+  return {
+    type: ACTIONS.HACKER_USER_FETCH_FAILURE,
+    payload: error,
+    error: true,
+  };
+}
+
+export function fetchHackerUser(id) {
+  return function thunk(dispatch) {
+    dispatch(hackerUserFetchRequest(id));
+
+    return fetch(`https://node-hnapi.herokuapp.com/user/${id}`)
+      .then(response => response.json().then(data => dispatch(hackerUserFetchSuccess(data))))
+      .catch(error => dispatch(hackerUserFetchFailure(error)));
+  };
+}
