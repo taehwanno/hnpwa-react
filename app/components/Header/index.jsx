@@ -9,35 +9,35 @@ function Header() {
       <NavLink
         activeClassName="Header__navlink--active"
         className="Header__navlink"
-        to="/news/1"
+        to="/news"
       >
         Top
       </NavLink>
       <NavLink
         activeClassName="Header__navlink--active"
         className="Header__navlink"
-        to="/newest/1"
+        to="/newest"
       >
         New
       </NavLink>
       <NavLink
         activeClassName="Header__navlink--active"
         className="Header__navlink"
-        to="/show/1"
+        to="/show"
       >
         Show
       </NavLink>
       <NavLink
         activeClassName="Header__navlink--active"
         className="Header__navlink"
-        to="/ask/1"
+        to="/ask"
       >
         Ask
       </NavLink>
       <NavLink
         activeClassName="Header__navlink--active"
         className="Header__navlink"
-        to="/jobs/1"
+        to="/jobs"
       >
         Jobs
       </NavLink>
