@@ -5,6 +5,7 @@ import Pagination from 'components/Pagination';
 
 const propTypes = {
   currentPage: PropTypes.number,
+  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
   onPaginate: PropTypes.func,
 };
@@ -42,7 +43,7 @@ class LocationPagination extends React.Component {
 
   handlePaginate(page) {
     const [type] = LocationPagination.getRequestQuery(this.props.location.pathname);
-    this.props.onPaginate(type, page);
+    this.props.history.push(`/${type}/${page}`);
   }
 
   render() {
@@ -50,7 +51,7 @@ class LocationPagination extends React.Component {
 
     return (
       <Pagination
-        curentPage={currentPage}
+        currentPage={currentPage}
         onPaginate={this.handlePaginate}
       />
     );
