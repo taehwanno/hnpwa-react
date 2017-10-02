@@ -3,13 +3,11 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import FeedRoute from 'components/FeedRoute';
 import Header from 'components/Header';
-import LocationPaginationContainer from 'containers/LocationPaginationContainer';
 
 function AppShell() {
   return (
     <div>
       <Header />
-      <LocationPaginationContainer />
       <div>
         <Switch>
           <Route path="/news/:page" component={FeedRoute} />
