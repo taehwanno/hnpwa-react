@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HackerNewsItem /> should match snapshot when render default 1`] = `null`;
+
+exports[`<HackerNewsItem /> should render <HackerNewsListItem /> and <HackerNewsCommentContainer /> 1`] = `
+<div
+  className="HackerNewsItem"
+>
+  <div
+    className="HackerNewsItem__content"
+  >
+    <HackerNewsListItem
+      commentsCount={14}
+      id={1}
+      points={14}
+      timeAgo="6 years ago"
+      title="React with TypeScript"
+      url="https://github.com/taehwanno"
+      user="taehwanno"
+    />
+  </div>
+  <Connect(HackerNewsCommentInner)
+    commentId={1}
+    key="1"
+  />
+  <Connect(HackerNewsCommentInner)
+    commentId={2}
+    key="2"
+  />
+  <Connect(HackerNewsCommentInner)
+    commentId={3}
+    key="3"
+  />
+  <Connect(HackerNewsCommentInner)
+    commentId={4}
+    key="4"
+  />
+</div>
+`;

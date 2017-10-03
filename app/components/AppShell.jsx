@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import FeedRoute from 'components/FeedRoute';
 import Header from 'components/Header';
+import ItemRoute from 'components/ItemRoute';
 import UserRoute from 'components/UserRoute';
 
 function AppShell() {
@@ -11,6 +12,7 @@ function AppShell() {
       <Header />
       <div>
         <Switch>
+          <Route path="/item/:id" component={ItemRoute} />
           <Route path="/user/:id" component={UserRoute} />
           <Route path="/news/:page" component={FeedRoute} />
           <Redirect from="/news" to="/news/1" />

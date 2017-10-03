@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HackerNewsComment /> should match snapshot when render default 1`] = `
+<div
+  className="HackerNewsComment"
+>
+  <div
+    className="HackerNewsComment__head"
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      [-]
+    </button>
+     
+    <Link
+      replace={false}
+      to="/user/undefined"
+    />
+     
+    <span />
+  </div>
+  <div
+    className="HackerNewsComment__inner"
+  >
+    <div
+      className="HackerNewsComment__content"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": undefined,
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`<HackerNewsComment /> should render comments and contents 1`] = `
+<div
+  className="HackerNewsComment"
+>
+  <div
+    className="HackerNewsComment__head"
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      [-]
+    </button>
+     
+    <Link
+      replace={false}
+      to="/user/taehwanno"
+    >
+      taehwanno
+    </Link>
+     
+    <span>
+      1 years ago
+    </span>
+  </div>
+  <div
+    className="HackerNewsComment__inner"
+  >
+    <div
+      className="HackerNewsComment__content"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<p>How you think React with TypeScript?</p>",
+        }
+      }
+    />
+    <Connect(HackerNewsCommentInner)
+      commentId={1}
+      key="1"
+    />
+    <Connect(HackerNewsCommentInner)
+      commentId={2}
+      key="2"
+    />
+    <Connect(HackerNewsCommentInner)
+      commentId={3}
+      key="3"
+    />
+    <Connect(HackerNewsCommentInner)
+      commentId={4}
+      key="4"
+    />
+  </div>
+</div>
+`;
+
+exports[`<HackerNewsComment /> should switch button shape by state.collapse 1`] = `"[-]"`;
+
+exports[`<HackerNewsComment /> should switch button shape by state.collapse 2`] = `"[+]"`;
