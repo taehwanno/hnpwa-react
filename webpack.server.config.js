@@ -16,7 +16,7 @@ module.exports = {
     alias: {
       assets: paths.assets,
       components: paths.components,
-      routes: paths.routes,
+      containers: paths.containers,
       store: paths.store,
     },
     extensions: ['.js', '.jsx'],
