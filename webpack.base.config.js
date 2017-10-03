@@ -60,6 +60,10 @@ module.exports = {
       fileBlacklist: [/\.map/, /\.hot-update\.js$/],
       include: ['app', 'vendor'],
     }),
+    new PreloadWebpackPlugin(({
+      rel: 'prefetch',
+      include: ['feed', 'item', 'user'],
+    })),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': process.env.NODE_ENV === 'development',
