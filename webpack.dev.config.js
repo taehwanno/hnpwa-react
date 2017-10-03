@@ -26,7 +26,7 @@ module.exports = () => {
       publicPath: '/',
     },
     devServer: {
-      contentBase: paths.build,
+      contentBase: paths.public,
       historyApiFallback: true,
       hot: true,
       port: 8080,
