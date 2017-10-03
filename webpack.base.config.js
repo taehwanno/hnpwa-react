@@ -57,6 +57,7 @@ module.exports = {
     }),
     new PreloadWebpackPlugin({
       rel: 'preload',
+      fileBlacklist: [/\.map/, /\.hot-update\.js$/],
       include: ['app', 'vendor'],
     }),
     new webpack.DefinePlugin({
