@@ -11,6 +11,7 @@
   "moduleNameMapper": {
     "\\.(css|scss)$": "<rootDir>/test/__mocks__/styleMock.js",
     "^components(.*)$": "<rootDir>/app/components$1",
+    "^containers(.*)$": "<rootDir>/app/containers$1",
     "^routes(.*)$": "<rootDir>/app/routes$1",
     "^store(.*)$": "<rootDir>/app/store$1"
   },
