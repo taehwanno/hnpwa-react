@@ -3,4 +3,5 @@ node_modules/
 build/
 scripts/
 
+generate-sw.js
 webpack.*.config.js

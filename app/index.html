@@ -34,5 +34,14 @@
 </head>
 <body>
   <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.info('SW: service worker is installed.'))
+        .catch((e) => console.error('SW: service worker registration error: ', e));
+    } else {
+      console.log('SW: service worker is not supported')
+    }
+  </script>
 </body>
 </html>

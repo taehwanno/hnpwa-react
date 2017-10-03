@@ -50,6 +50,15 @@
           "devDependencies": true
         }]
       }
+    },
+    {
+      "files": ["service-worker.js"],
+      "env": {
+        "serviceworker": true
+      },
+      "rules": {
+        "comma-dangle": 0
+      }
     }
   ]
 }
