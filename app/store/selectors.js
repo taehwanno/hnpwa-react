@@ -28,3 +28,32 @@ export const getSpecificUser = createSelector(
     return information;
   },
 );
+
+export const getComments = state => state.get('comments');
+export const getCommentId = (_, props) => props.commentId;
+export const getItemId = (_, props) => props.itemId;
+export const getItem = createSelector(
+  getComments,
+  getItemId,
+  (comments, itemId) => {
+    const item = comments.get(itemId);
+
+    if (!item) return null;
+    return item;
+  },
+);
+export const getChildrenComments = createSelector(
+  getComments,
+  getCommentId,
+  (comments, commentId) => comments.getIn([commentId, 'comments']),
+);
+export const makeGetChildrenComments = () => createSelector(
+  getComments,
+  getCommentId,
+  (comments, commentId) => comments.getIn([commentId, 'comments']),
+);
+export const makeGetCommentContents = () => createSelector(
+  getComments,
+  getCommentId,
+  (comments, commentId) => comments.get(commentId),
+);

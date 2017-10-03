@@ -4,6 +4,7 @@ import * as selectors from '../selectors';
 describe('selectors', () => {
   const state = Immutable.fromJS({
     byId: {},
+    comments: Immutable.Map(),
     currentPage: 1,
     items: {
       ask: {},
@@ -87,5 +88,61 @@ describe('selectors', () => {
       expect(selectors.getSpecificUser(currentState, props))
         .toEqual(currentState.getIn(['user', 'taehwanno']));
     });
+  });
+
+  it('should select comments', () => {
+    expect(selectors.getComments(state)).toEqual(state.get('comments'));
+  });
+
+  it('should select props.commentId', () => {
+    const props = { commentId: 1234 };
+    expect(selectors.getCommentId(null, props)).toBe(props.commentId);
+  });
+
+  it('should select props.itemId', () => {
+    const props = { itemId: 1234 };
+    expect(selectors.getItemId(null, props)).toBe(props.itemId);
+  });
+
+  describe('getItem', () => {
+    it('should return null when matched itemId\'s comment not exist', () => {
+      expect(selectors.getItem(state, { itemId: 1234 })).toEqual(null);
+    });
+
+    it('should return item when matched itemId\'s comment exist', () => {
+      const comment = Immutable.Map();
+      expect(selectors.getItem(Immutable.Map({
+        comments: Immutable.Map(new Map([
+          [1234, comment],
+        ])),
+      }), { itemId: 1234 })).toEqual(comment);
+    });
+  });
+
+  it('should select matched id\'s comments', () => {
+    const comment = Immutable.Map({ comments: Immutable.List([1, 2]) });
+    const currentState = Immutable.Map({
+      comments: Immutable.Map(new Map([[4321, comment]])),
+    });
+    expect(selectors.getChildrenComments(currentState, { commentId: 4321 }))
+      .toEqual(comment.get('comments'));
+  });
+
+  it('should return selector that select children comments', () => {
+    const comment = Immutable.Map({ comments: Immutable.List([1, 2]) });
+    const currentState = Immutable.Map({
+      comments: Immutable.Map(new Map([[4321, comment]])),
+    });
+    const getChildrenComments = selectors.makeGetChildrenComments();
+    expect(getChildrenComments(currentState, { commentId: 4321 })).toEqual(comment.get('comments'));
+  });
+
+  it('should return selector that select comment contents', () => {
+    const comment = Immutable.Map();
+    const currentState = Immutable.Map({
+      comments: Immutable.Map(new Map([[4321, comment]])),
+    });
+    const getCommentContents = selectors.makeGetCommentContents();
+    expect(getCommentContents(currentState, { commentId: 4321 })).toEqual(comment);
   });
 });
