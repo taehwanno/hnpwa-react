@@ -2,6 +2,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const paths = require('./paths');
 const webpackBaseConfig = require('./webpack.base.config');
@@ -77,6 +78,12 @@ module.exports = () => {
       ],
     },
     plugins: [
+      new CopyWebpackPlugin([
+        {
+          context: paths.public,
+          from: '*.*',
+        },
+      ]),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         name: ['vendor'],

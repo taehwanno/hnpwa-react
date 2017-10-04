@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -68,6 +69,13 @@ module.exports = webpackMerge(webpackBaseConfig, {
       dry: false,
       verbose: true,
     }),
+    new CopyWebpackPlugin([
+      {
+        context: paths.public,
+        from: '*.*',
+        ignore: ['service-worker.js'],
+      },
+    ]),
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'app.bundle-[chunkhash].css',
