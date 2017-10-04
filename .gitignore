@@ -1,5 +1,6 @@
 build/
 coverage/
+functions/node_modules/
 node_modules/
 stats.json
 .idea/
