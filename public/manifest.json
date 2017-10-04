@@ -1,6 +1,26 @@
 {
   "name": "HNPWA with React",
-  "background_color": "#ffffff",
+  "short_name": "HNPWA with React",
+  "icons": [
+    {
+      "src": "icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/news/1?utm_source=homescreen",
   "display": "standalone",
-  "theme_color": "#ffffff"
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#f4751e"
 }
