@@ -13,7 +13,7 @@
   },
   "globals": {
     "__DEV__": false,
-    "__PROD__": false,
+    "__PROD__": false
   },
   "env": {
     "browser": true
