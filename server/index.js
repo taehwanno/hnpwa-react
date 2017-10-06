@@ -1,16 +1,25 @@
-const Koa = require('koa');
-const serve = require('koa-static');
+const fs = require('fs');
+const path = require('path');
+const fetch = require('node-fetch');
+const express = require('express');
 
-const app = new Koa();
+const app = express();
+const render = require('./render').default;
 const paths = require('../paths');
-const render = require('./render');
 
-app.use((ctx, next) => {
-  if (ctx.path === '/') return render(ctx);
-  return next();
+const template = fs.readFileSync(path.join(paths.build, 'index.html'), { encoding: 'utf-8' });
+
+global.fetch = fetch;
+
+app.use(express.static(paths.build));
+
+app.get('*', (req, res) => {
+  const rendered = render(req.path);
+
+  res.send(template.replace(
+    '<div id="root"></div>',
+    `<div id="root">${rendered}</div>`,
+  ));
 });
-
-app.use(serve(paths.build));
-app.use(render);
 
 app.listen(3000);

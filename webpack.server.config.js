@@ -9,7 +9,7 @@ module.exports = {
   target: 'node',
   output: {
     path: path.resolve(__dirname, 'server/render'),
-    filename: 'render.js',
+    filename: 'index.js',
     libraryTarget: 'commonjs2',
   },
   resolve: {
