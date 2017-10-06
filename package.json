@@ -33,6 +33,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
+    "ejs": "^2.5.7",
     "express": "^4.16.1",
     "history": "^4.7.2",
     "immutable": "^3.8.2",

@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const paths = require('./paths');
 const webpackBaseConfig = require('./webpack.base.config');
@@ -84,6 +85,11 @@ module.exports = () => {
           from: '*.*',
         },
       ]),
+      new HtmlWebpackPlugin({
+        template: path.join(paths.app, 'index.ejs'),
+        markup: '<div id="root"></div>',
+        inject: false,
+      }),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         name: ['vendor'],

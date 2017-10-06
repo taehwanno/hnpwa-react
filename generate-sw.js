@@ -5,7 +5,7 @@ workboxBuild.injectManifest({
   swDest: 'build/service-worker.js',
   globDirectory: 'build',
   staticFileGlobs: ['**/!(*map*)'],
-  globIgnores: ['**/service-worker.js'],
+  globIgnores: ['**/service-worker.js', 'views/*'],
 }).then(() => {
   console.log('The production service worker has been generated.');
 });
