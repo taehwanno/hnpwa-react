@@ -6,6 +6,7 @@ const build = path.resolve(root, 'build');
 const publicDir = path.resolve(root, 'public');
 
 const assets = path.resolve(app, 'assets');
+const client = path.resolve(app, 'client');
 const components = path.resolve(app, 'components');
 const containers = path.resolve(app, 'containers');
 const pages = path.resolve(app, 'pages');
@@ -19,6 +20,7 @@ module.exports = {
   public: publicDir,
 
   assets,
+  client,
   components,
   containers,
   pages,

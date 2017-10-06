@@ -16,7 +16,7 @@ module.exports = () => {
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://0.0.0.0:8080',
         'webpack/hot/only-dev-server',
-        './app/index.jsx',
+        path.resolve(paths.client, 'index.jsx'),
       ],
     },
     output: {
