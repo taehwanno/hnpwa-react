@@ -8,6 +8,7 @@ const publicDir = path.resolve(root, 'public');
 const assets = path.resolve(app, 'assets');
 const components = path.resolve(app, 'components');
 const containers = path.resolve(app, 'containers');
+const pages = path.resolve(app, 'pages');
 const store = path.resolve(app, 'store');
 const test = path.resolve(app, 'test');
 
@@ -20,6 +21,7 @@ module.exports = {
   assets,
   components,
   containers,
+  pages,
   store,
   test,
 };

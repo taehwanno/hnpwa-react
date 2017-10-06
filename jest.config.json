@@ -13,6 +13,7 @@
     "^components(.*)$": "<rootDir>/app/components$1",
     "^containers(.*)$": "<rootDir>/app/containers$1",
     "^routes(.*)$": "<rootDir>/app/routes$1",
+    "^pages(.*)$": "<rootDir>/app/pages$1",
     "^store(.*)$": "<rootDir>/app/store$1"
   },
   "roots": [

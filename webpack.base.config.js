@@ -77,6 +77,7 @@ module.exports = {
       assets: paths.assets,
       components: paths.components,
       containers: paths.containers,
+      pages: paths.pages,
       store: paths.store,
     },
     extensions: ['.js', '.jsx'],

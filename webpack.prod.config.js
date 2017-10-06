@@ -80,6 +80,10 @@ module.exports = webpackMerge(webpackBaseConfig, {
       allChunks: true,
       filename: 'app.bundle-[chunkhash].css',
     }),
+    new webpack.NormalModuleReplacementPlugin(
+      /^pages$/,
+      'pages/index.async.js'
+    ),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor'],
       filename: '[name].bundle-[chunkhash].js',

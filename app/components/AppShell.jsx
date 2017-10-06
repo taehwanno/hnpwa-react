@@ -1,23 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import asyncComponent from 'components/AsyncComponent';
 import Header from 'components/Header';
-
-const Feed = asyncComponent(() =>
-  import(/* webpackChunkName: "feed" */ 'components/FeedRoute')
-    .then(module => module.default),
-);
-
-const Item = asyncComponent(() =>
-  import(/* webpackChunkName: "item" */ 'components/ItemRoute')
-    .then(module => module.default),
-);
-
-const User = asyncComponent(() =>
-  import(/* webpackChunkName: "user" */ 'components/UserRoute')
-    .then(module => module.default),
-);
+import { Feed, Item, User } from 'pages';
 
 function AppShell() {
   return (
