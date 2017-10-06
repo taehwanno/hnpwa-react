@@ -6,16 +6,21 @@ import { StaticRouter } from 'react-router-dom';
 import AppShell from 'components/AppShell';
 import configureStore from 'store/configureStore';
 
-const store = configureStore();
+function render(location, staticContext) {
+  const store = configureStore();
 
-function render(location) {
-  return ReactDOMServer.renderToString(
-    <StaticRouter location={location}>
+  const markup = ReactDOMServer.renderToString(
+    <StaticRouter context={staticContext} location={location}>
       <Provider store={store}>
         <AppShell />
       </Provider>
     </StaticRouter>,
   );
+
+  return {
+    markup,
+    state: store.getState(),
+  };
 }
 
 export default render;

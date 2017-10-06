@@ -85,7 +85,12 @@ module.exports = webpackMerge(webpackBaseConfig, {
     new HtmlWebpackPlugin({
       template: path.join(paths.app, 'index.ejs'),
       filename: 'views/index.ejs',
-      markup: '<div id="root"><%- markup %></div>',
+      markup: `
+        <div id="root"><%- markup %></div>
+        <% if (state) { %>
+        <script>window.__PRELOADED_STATE__ = <%- state %></script>
+        <% } %>
+      `,
       inject: false,
     }),
     new ExtractTextPlugin({
