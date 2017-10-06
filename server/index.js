@@ -15,8 +15,10 @@ app.use(express.static(paths.build));
 
 app.get('*', (req, res) => {
   const staticContext = {};
-  const { markup, state } = render(req.path, staticContext);
-  res.render('index', { markup, state: serialize(state) });
+
+  render(req.path, staticContext)
+    .then(({ markup, state }) =>
+      res.render('index', { markup, state: serialize(state) }));
 });
 
 app.listen(3000);

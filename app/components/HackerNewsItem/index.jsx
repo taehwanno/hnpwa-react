@@ -8,6 +8,7 @@ import './HackerNewsItem.scss';
 
 const propTypes = {
   comments: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  done: PropTypes.func,
   item: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   itemId: PropTypes.number,
   onItemFetch: PropTypes.func,
@@ -15,14 +16,19 @@ const propTypes = {
 
 const defaultProps = {
   comments: null,
+  done() {},
   item: null,
   itemId: 0,
-  onItemFetch() {},
+  onItemFetch() { return Promise.resolve(); },
 };
 
 class HackerNewsItem extends React.Component {
   componentWillMount() {
-    this.props.onItemFetch(this.props.itemId);
+    const { done, item, itemId } = this.props;
+
+    if (!item) {
+      this.props.onItemFetch(itemId).then(done, done);
+    }
   }
 
   render() {

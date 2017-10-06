@@ -5,6 +5,8 @@ import Pagination from 'components/Pagination';
 
 const propTypes = {
   currentPage: PropTypes.number,
+  done: PropTypes.func,
+  feedCount: PropTypes.number,
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
   onPaginate: PropTypes.func,
@@ -12,7 +14,9 @@ const propTypes = {
 
 const defaultProps = {
   currentPage: 1,
-  onPaginate() {},
+  done() {},
+  feedCount: 0,
+  onPaginate() { return Promise.resolve(); },
 };
 
 class LocationPagination extends React.Component {
@@ -26,11 +30,12 @@ class LocationPagination extends React.Component {
   }
 
   componentWillMount() {
+    const { done, feedCount } = this.props;
     const [type, stringPage] = LocationPagination.getRequestQuery(this.props.location.pathname);
     const page = parseInt(stringPage, 10);
 
-    if (type && !Number.isNaN(page)) {
-      this.props.onPaginate(type, parseInt(page, 10));
+    if (type && !Number.isNaN(page) && feedCount === 0) {
+      this.props.onPaginate(type, parseInt(page, 10)).then(done, done);
     }
   }
 

@@ -64,6 +64,29 @@ describe('selectors', () => {
     });
   });
 
+  it('should return feed count', () => {
+    const props = { type: 'ask' };
+    const currentState = Immutable.Map({
+      byId: Immutable.Map(new Map([
+        [1, { title: 'React with TypeScript', id: 1 }],
+        [2, { title: 'TypeScript vs Flow', id: 2 }],
+      ])),
+      currentPage: 1,
+      items: Immutable.Map({
+        ask: Immutable.Map(new Map([
+          [1, Immutable.List([1, 2])],
+        ])),
+        jobs: Immutable.Map(),
+        newest: Immutable.Map(),
+        news: Immutable.Map(),
+        show: Immutable.Map(),
+      }),
+    });
+
+    expect(selectors.getFeedCount(state, props)).toBe(0);
+    expect(selectors.getFeedCount(currentState, props)).toBe(2);
+  });
+
   it('should select props.user', () => {
     const props = { user: 'taehwanno' };
     expect(selectors.getUserId(null, props)).toBe(props.user);

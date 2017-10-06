@@ -17,6 +17,10 @@ export const getFeeds = createSelector(
     return feeds.map(id => byId.get(id));
   },
 );
+export const getFeedCount = createSelector(
+  getFeeds,
+  feeds => feeds.size,
+);
 
 export const getUserId = (_, props) => props.user;
 export const getSpecificUser = createSelector(

@@ -4,19 +4,25 @@ import PropTypes from 'prop-types';
 import './HackerNewsUser.scss';
 
 const propTypes = {
+  done: PropTypes.func,
   information: PropTypes.shape({ created: PropTypes.string, karma: PropTypes.number }),
   user: PropTypes.string.isRequired,
   onUserFetch: PropTypes.func,
 };
 
 const defaultProps = {
+  done() {},
   information: null,
-  onUserFetch() {},
+  onUserFetch() { return Promise.resolve(); },
 };
 
 class HackerNewsUser extends React.Component {
   componentWillMount() {
-    this.props.onUserFetch(this.props.user);
+    const { done, information, user, onUserFetch } = this.props;
+
+    if (!information) {
+      onUserFetch(user).then(done, done);
+    }
   }
 
   render() {

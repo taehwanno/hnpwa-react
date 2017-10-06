@@ -25,11 +25,17 @@ describe('<HackerNewsItem />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should calls props.onItemFetch when componentWillMount is called', () => {
+  it('should calls props.onItemFetch in componentWillMount when the item does not exist', () => {
     const itemId = 1;
-    const onItemFetch = jest.fn();
+    const onItemFetch = jest.fn(() => Promise.resolve());
     shallow(<HackerNewsItem itemId={itemId} onItemFetch={onItemFetch} />);
     expect(onItemFetch.mock.calls.length).toBe(1);
     expect(onItemFetch.mock.calls[0]).toEqual([itemId]);
+  });
+
+  it('should not calls props.onItemFetch in componentWillMount when the item does exist', () => {
+    const onItemFetch = jest.fn();
+    shallow(<HackerNewsItem item={{}} onItemFetch={onItemFetch} />);
+    expect(onItemFetch.mock.calls.length).toBe(0);
   });
 });
