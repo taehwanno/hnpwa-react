@@ -5,7 +5,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const paths = require('./paths');
 
 module.exports = {
-  entry: path.resolve(paths.app, 'server/index.jsx'),
+  entry: path.resolve(paths.app, 'server.jsx'),
   target: 'node',
   output: {
     path: path.resolve(paths.server, 'render'),

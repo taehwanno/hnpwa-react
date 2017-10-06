@@ -16,7 +16,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
   entry: {
     app: [
       'babel-polyfill',
-      path.resolve(paths.client, 'index.jsx'),
+      path.resolve(paths.app, 'client.jsx'),
     ],
   },
   output: {
