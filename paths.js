@@ -4,6 +4,7 @@ const root = __dirname;
 const app = path.resolve(root, 'app');
 const build = path.resolve(root, 'build');
 const publicDir = path.resolve(root, 'public');
+const server = path.resolve(root, 'server');
 
 const assets = path.resolve(app, 'assets');
 const client = path.resolve(app, 'client');
@@ -18,6 +19,7 @@ module.exports = {
   app,
   build,
   public: publicDir,
+  server,
 
   assets,
   client,
