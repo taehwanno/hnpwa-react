@@ -1,4 +1,4 @@
-importScripts('https://unpkg.com/workbox-sw@2.0.3/build/importScripts/workbox-sw.prod.v2.0.3.js');
+importScripts('workbox-sw.js');
 
 /* global WorkboxSW */
 

@@ -2,9 +2,17 @@ const path = require('path');
 
 const webpack = require('webpack');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 const paths = require('./paths');
+
+const workboxSWFilename = () => {
+  const pkgPath = path.resolve(__dirname, 'node_modules/workbox-sw/package.json');
+  const pkgVersion = require(pkgPath).version;
+  const environment = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
+  return `workbox-sw.${environment}.v${pkgVersion}.js`;
+};
 
 module.exports = {
   entry: {
@@ -50,6 +58,12 @@ module.exports = {
   },
   plugins: [
     new CaseSensitivePathsPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: `node_modules/workbox-sw/build/importScripts/${workboxSWFilename()}`,
+        to: 'workbox-sw.js',
+      },
+    ]),
     new PreloadWebpackPlugin({
       rel: 'preload',
       fileBlacklist: [/\.map/, /\.hot-update\.js$/],
