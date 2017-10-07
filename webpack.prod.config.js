@@ -34,6 +34,13 @@ module.exports = webpackMerge(webpackBaseConfig, {
         loader: 'babel-loader'
       },
       {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'assets/[hash].[ext]',
+        },
+      },
+      {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -120,7 +127,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
     new WorkboxWebpackPlugin({
       swSrc: 'public/service-worker.js',
       swDest: 'build/service-worker.js',
-      globPatterns: ['**/*.{html,js,css}'],
+      globPatterns: ['**/*.{html,js,css,png,jpg,json}'],
       globIgnores: ['**/service-worker.js', 'index.html', 'workbox-sw.js'],
     }),
   ],

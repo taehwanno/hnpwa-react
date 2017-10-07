@@ -47,7 +47,7 @@ exports[`<Header /> should match snapshot when render default 1`] = `
   <img
     alt="HNPWA Logo"
     className="Header__logo"
-    src="https://raw.githubusercontent.com/tastejs/hacker-news-pwas/b3f3d40b9e4bd385dbb973d238ce207aed1f60eb/media/logo.png"
+    src="test-file-stub"
   />
 </nav>
 `;

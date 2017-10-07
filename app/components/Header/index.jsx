@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import hnpwaLogo from 'assets/images/hnpwa-logo.png';
 import './Header.scss';
 
 function Header() {
@@ -41,11 +42,7 @@ function Header() {
       >
         Jobs
       </NavLink>
-      <img
-        className="Header__logo"
-        src="https://raw.githubusercontent.com/tastejs/hacker-news-pwas/b3f3d40b9e4bd385dbb973d238ce207aed1f60eb/media/logo.png"
-        alt="HNPWA Logo"
-      />
+      <img className="Header__logo" src={hnpwaLogo} alt="HNPWA Logo" />
     </nav>
   );
 }

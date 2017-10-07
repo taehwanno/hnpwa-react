@@ -44,13 +44,6 @@ module.exports = {
         loader: 'eslint-loader',
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
-        loader: 'file-loader',
-        options: {
-          name: 'assets/[path][name].[ext]',
-        },
-      },
-      {
         test: /\.css$/,
         loader: 'css-loader',
       },

@@ -10,6 +10,7 @@
   "moduleFileExtensions": ["js", "jsx"],
   "moduleNameMapper": {
     "\\.(css|scss)$": "<rootDir>/test/__mocks__/styleMock.js",
+    "\\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$": "<rootDir>/test/__mocks__/fileMock.js",
     "^components(.*)$": "<rootDir>/app/components$1",
     "^containers(.*)$": "<rootDir>/app/containers$1",
     "^routes(.*)$": "<rootDir>/app/routes$1",

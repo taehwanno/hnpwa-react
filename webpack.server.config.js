@@ -26,7 +26,7 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        exclude: /\.jsx?$/,
+        exclude: /\.(jsx?|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
         loader: 'ignore-loader',
       },
       {
@@ -36,7 +36,15 @@ module.exports = {
         options: {
           cacheDirectory: true,
         },
-      }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
+        loader: 'file-loader',
+        options: {
+          emitFile: false,
+          name: 'assets/[hash].[ext]',
+        },
+      },
     ]
   },
   plugins: [
