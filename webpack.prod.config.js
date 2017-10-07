@@ -65,7 +65,6 @@ module.exports = webpackMerge(webpackBaseConfig, {
       }
     ],
   },
-  devtool: 'cheap-module-source-map',
   plugins: [
     new CleanWebpackPlugin(['build/*'], {
       dry: false,
