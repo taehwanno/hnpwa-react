@@ -10,7 +10,3 @@ workboxSW.router.registerRoute(
   'https://node-hnapi.herokuapp.com/(.*)',
   workboxSW.strategies.networkFirst({ networkTimeoutSeconds: 3 })
 );
-
-workboxSW.router.setDefaultHandler({
-  handler: workboxSW.strategies.staleWhileRevalidate()
-});
