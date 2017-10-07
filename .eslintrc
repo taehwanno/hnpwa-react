@@ -50,14 +50,6 @@
       }
     },
     {
-      "files": ["server/**/*.js"],
-      "rules": {
-        "import/no-extraneous-dependencies": [2, {
-          "devDependencies": true
-        }]
-      }
-    },
-    {
       "files": ["service-worker.js"],
       "env": {
         "serviceworker": true

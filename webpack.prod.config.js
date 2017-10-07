@@ -84,7 +84,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
     }),
     new HtmlWebpackPlugin({
       template: path.join(paths.app, 'index.ejs'),
-      filename: 'views/index.ejs',
+      filename: path.resolve(paths.functions, 'views/index.ejs'),
       markup: `
         <div id="root"><%- markup %></div>
         <% if (state) { %>

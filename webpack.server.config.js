@@ -8,8 +8,8 @@ module.exports = {
   entry: path.resolve(paths.app, 'server.jsx'),
   target: 'node',
   output: {
-    path: path.resolve(paths.server, 'render'),
-    filename: 'index.js',
+    path: paths.functions,
+    filename: 'server.bundle.js',
     libraryTarget: 'commonjs2',
   },
   resolve: {

@@ -1,6 +1,8 @@
 build/
 coverage/
 functions/node_modules/
+functions/server.bundle.js
+functions/views/
 node_modules/
 stats.json
 .idea/

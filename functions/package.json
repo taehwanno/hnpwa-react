@@ -2,8 +2,12 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
     "firebase-admin": "~5.4.0",
-    "firebase-functions": "^0.7.0"
+    "firebase-functions": "^0.7.0",
+    "node-fetch": "^1.7.3",
+    "serialize-javascript": "^1.4.0"
   },
   "private": true
 }
