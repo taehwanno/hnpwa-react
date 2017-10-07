@@ -8,6 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 const paths = require('./paths');
 const webpackBaseConfig = require('./webpack.base.config');
@@ -116,6 +117,12 @@ module.exports = webpackMerge(webpackBaseConfig, {
       algorithm: 'gzip',
       test: /\.(js|css)$/,
       minRatio: 0.8,
+    }),
+    new WorkboxWebpackPlugin({
+      swSrc: 'public/service-worker.js',
+      swDest: 'build/service-worker.js',
+      globPatterns: ['**/*.{html,js,css}'],
+      globIgnores: ['**/service-worker.js', 'index.html', 'workbox-sw.js'],
     }),
   ],
 });

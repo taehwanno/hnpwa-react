@@ -9,11 +9,10 @@
     "analyze": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js --env.prod --profile --json > stats.json && yarn analyze:cache",
     "analyze:cache": "webpack-bundle-analyzer stats.json bundleDir=build",
     "build": "yarn build:client && yarn build:server",
-    "build:client": "yarn lint && cross-env NODE_ENV=production webpack --config webpack.prod.config.js --progress --env.prod && yarn generate-sw",
+    "build:client": "yarn lint && cross-env NODE_ENV=production webpack --config webpack.prod.config.js --progress --env.prod",
     "build:server": "cross-env NODE_ENV=production node scripts/build.server.js",
     "deploy": "firebase deploy --project hnpwa-react",
     "deploy:stage": "firebase deploy --project hnpwa-react-stage",
-    "generate-sw": "node generate-sw.js",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint app test --ext .js,.jsx",
     "lint:scss": "sh ./scripts/scss-lint.sh app/",
@@ -114,6 +113,6 @@
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0",
-    "workbox-build": "^2.0.3"
+    "workbox-webpack-plugin": "^2.1.0"
   }
 }
