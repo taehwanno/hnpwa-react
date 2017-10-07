@@ -114,7 +114,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
-      test: /!(workbox-sw)\.(js|css)$/,
+      test: /\.(js|css)$/,
       minRatio: 0.8,
     }),
   ],
