@@ -13,9 +13,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 app.get('*', (req, res) => {
-  const staticContext = {};
-
-  render(req.path, staticContext)
+  render(req.url)
     .then(({ markup, state }) =>
       res.render('index', { markup, state: serialize(state) }));
 });
