@@ -30,6 +30,7 @@ module.exports = {
       'redux-immutable',
       'redux-thunk',
       'reselect',
+      'transit-immutable-js',
     ],
   },
   module: {
