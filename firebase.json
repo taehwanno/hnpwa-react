@@ -6,13 +6,16 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination" : "/news/1",
+        "type" : 301
+      }
+    ],
     "rewrites": [
       {
         "source": "/@(news|newest|show|ask|jobs|item|user)/*",
-        "function": "app"
-      },
-      {
-        "source": "/",
         "function": "app"
       }
     ]
