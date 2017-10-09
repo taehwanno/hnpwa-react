@@ -9,6 +9,7 @@ export const PROD_TRACKERS = ALL_TRACKERS.filter(({ name }) => /prod/.test(name)
 export const TEST_TRACKERS = ALL_TRACKERS.filter(({ name }) => /test/.test(name));
 
 export const NULL_VALUE = '(not set)';
+export const CONNECTION_STATUE_DEFAULT_VALUE = 'online';
 
 export const DIMENSIONS = {
   TRACKING_VERSION: 'dimension1',
@@ -20,6 +21,7 @@ export const DIMENSIONS = {
   HIT_SOURCE: 'dimension7',
   VISIBILITY_STATE: 'dimension8',
   URL_QUERY_PARAMS: 'dimension9',
+  CONNECTION_STATUS: 'dimension10',
 };
 
 export const METRICS = {
@@ -29,4 +31,5 @@ export const METRICS = {
   PAGE_VISIBLE: 'metric4',
   MAX_SCROLL_PERCENTAGE: 'metric5',
   PAGE_LOADS: 'metric6',
+  CONNECTION_ELAPSED_TIME: 'metric7',
 };

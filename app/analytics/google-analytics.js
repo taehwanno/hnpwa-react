@@ -12,6 +12,7 @@ import {
   PROD_TRACKERS,
   TEST_TRACKERS,
   NULL_VALUE,
+  CONNECTION_STATUE_DEFAULT_VALUE,
   DIMENSIONS,
   METRICS,
 } from './constants';
@@ -111,6 +112,8 @@ const trackCustomDimensions = () => {
   Object.keys(DIMENSIONS).forEach((key) => {
     gaAll('set', DIMENSIONS[key], NULL_VALUE);
   });
+
+  gaAll('set', DIMENSIONS.CONNECTION_STATUS, CONNECTION_STATUE_DEFAULT_VALUE);
 
   // Adds tracking of dimensions known at page load time.
   gaAll((tracker) => {

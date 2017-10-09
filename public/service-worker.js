@@ -1,6 +1,17 @@
+importScripts('workbox-google-analytics.js');
 importScripts('workbox-sw.js');
 
-/* global WorkboxSW */
+/* global workbox, WorkboxSW */
+
+workbox.googleAnalytics.initialize({
+  parameterOverrides: {
+    cd10: 'offline'
+  },
+  hitFilter: (searchParams) => {
+    const qt = searchParams.get('qt');
+    searchParams.set('cm7', qt);
+  }
+});
 
 const workboxSW = new WorkboxSW({ clientsClaim: true });
 
