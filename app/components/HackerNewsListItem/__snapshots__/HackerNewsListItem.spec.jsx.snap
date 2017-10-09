@@ -16,6 +16,7 @@ exports[`<HackerNewsListItem /> should match snapshot when render default 1`] = 
      points by 
      
     <Link
+      href="/user/"
       replace={false}
       to="/user/"
     />
@@ -23,6 +24,7 @@ exports[`<HackerNewsListItem /> should match snapshot when render default 1`] = 
      | 
      
     <Link
+      href="/item/0/"
       replace={false}
       to="/item/0"
     >

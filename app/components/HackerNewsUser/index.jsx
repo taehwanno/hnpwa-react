@@ -18,7 +18,12 @@ const defaultProps = {
 
 class HackerNewsUser extends React.Component {
   componentWillMount() {
-    const { done, information, user, onUserFetch } = this.props;
+    const {
+      done,
+      information,
+      user,
+      onUserFetch,
+    } = this.props;
 
     if (!information) {
       onUserFetch(user).then(done, done);

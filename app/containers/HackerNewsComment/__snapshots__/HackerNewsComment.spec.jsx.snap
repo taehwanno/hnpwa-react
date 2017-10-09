@@ -15,6 +15,7 @@ exports[`<HackerNewsComment /> should match snapshot when render default 1`] = `
     </button>
      
     <Link
+      href="/user/undefined"
       replace={false}
       to="/user/undefined"
     />
@@ -51,6 +52,7 @@ exports[`<HackerNewsComment /> should render comments and contents 1`] = `
     </button>
      
     <Link
+      href="/user/taehwanno"
       replace={false}
       to="/user/taehwanno"
     >

@@ -18,11 +18,9 @@ function commentsReducer(state = initialState, action) {
       return newState.set(action.payload.id, Immutable.Map({
         ...action.payload,
         commentsCount: action.payload.comments_count,
-        comments: Immutable.List(
-          action.payload.comments
-            .filter(v => v.parent === action.payload.id)
-            .map(v => v.id),
-        ),
+        comments: Immutable.List(action.payload.comments
+          .filter(v => v.parent === action.payload.id)
+          .map(v => v.id)),
       }));
     default:
       return state;

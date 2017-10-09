@@ -48,7 +48,12 @@ export class HackerNewsCommentInner extends React.Component {
             {collapse ? '[+]' : '[-]'}
           </button>
           {' '}
-          <Link to={`/user/${contents.get('user')}`}>{contents.get('user')}</Link>
+          <Link
+            href={`/user/${contents.get('user')}`}
+            to={`/user/${contents.get('user')}`}
+          >
+            {contents.get('user')}
+          </Link>
           {' '}
           <span>{contents.get('timeAgo')}</span>
         </div>

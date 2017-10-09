@@ -11,13 +11,13 @@ function render(location) {
   const history = createMemoryHistory({ initialEntries: [location] });
   const store = configureStore({ routerMiddleware: routerMiddleware(history) });
 
-  return renderToString(
+  return renderToString((
     <Provider store={store}>
       <ConnectedRouter location={location} history={history}>
         <AppShell />
       </ConnectedRouter>
-    </Provider>,
-  ).then(({ html }) => ({ markup: html, state: store.getState() }));
+    </Provider>
+  )).then(({ html }) => ({ markup: html, state: store.getState() }));
 }
 
 export default render;

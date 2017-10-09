@@ -38,16 +38,13 @@ describe('byId reducer', () => {
   });
 
   it('should handle HACKER_NEWS_FETCH_SUCCESS', () => {
-    const secondState = Immutable.Map(
-      new Map([
-        [
-          1, Immutable.Map({
-            id: 1,
-            title: 'Interview with Mr. Money Mustache',
-          }),
-        ],
-      ]),
-    );
+    const secondState = Immutable.Map(new Map([
+      [
+        1, Immutable.Map({
+          id: 1,
+          title: 'Interview with Mr. Money Mustache',
+        }),
+      ]]));
 
     expect(byId(Immutable.Map(), {
       type: ACTIONS.HACKER_NEWS_FETCH_SUCCESS,
@@ -71,11 +68,12 @@ describe('byId reducer', () => {
           },
         ],
       },
-    })).toEqual(
-      secondState.set(2, Immutable.Map({
+    })).toEqual(secondState.set(
+      2,
+      Immutable.Map({
         id: 2,
         title: 'React with TypeScript',
-      })),
-    );
+      }),
+    ));
   });
 });

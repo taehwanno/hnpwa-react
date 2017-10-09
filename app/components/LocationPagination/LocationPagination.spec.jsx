@@ -25,38 +25,38 @@ describe('<LocationPagination />', () => {
 
   it('should not calls props.onPaginate in componentWillMount when URL path is valid and props.feedCount !== 0', () => {
     const onPaginate = jest.fn(() => Promise.resolve());
-    shallow(
+    shallow((
       <LocationPagination
         history={history}
         feedCount={10}
         location={location}
         onPaginate={onPaginate}
-      />,
-    );
+      />
+    ));
     expect(onPaginate.mock.calls.length).toBe(0);
   });
 
   it('should not calls props.onPaginate when location.pathname === \'/\' in componentWillMount', () => {
     const onPaginate = jest.fn();
-    shallow(
+    shallow((
       <LocationPagination
         history={history}
         location={{ pathname: '/' }}
         onPaginate={onPaginate}
-      />,
-    );
+      />
+    ));
     expect(onPaginate.mock.calls.length).toBe(0);
   });
 
   it('should calls props.onPaginate when props.location.pathname is changed in componentWillReceiveProps', () => {
     const onPaginate = jest.fn(() => Promise.resolve());
-    const wrapper = shallow(
+    const wrapper = shallow((
       <LocationPagination
         history={history}
         location={location}
         onPaginate={onPaginate}
-      />,
-    );
+      />
+    ));
     expect(onPaginate.mock.calls.length).toBe(1);
     wrapper.setProps({ location: { pathname: '/news/1' } });
     expect(onPaginate.mock.calls.length).toBe(1);

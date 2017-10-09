@@ -57,10 +57,9 @@ describe('selectors', () => {
         }),
       });
       expect(selectors.getFeeds(currentState, props))
-        .toEqual(
-          currentState.getIn(['items', 'ask', currentState.get('currentPage')])
-            .map(id => currentState.getIn(['byId', id])),
-        );
+        .toEqual(currentState
+          .getIn(['items', 'ask', currentState.get('currentPage')])
+          .map(id => currentState.getIn(['byId', id])));
     });
   });
 

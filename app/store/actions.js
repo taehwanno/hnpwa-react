@@ -29,14 +29,12 @@ export function fetchHackerComments(id) {
 
     return fetch(`https://node-hnapi.herokuapp.com/item/${id}`)
       .then(response =>
-        response.json().then(
-          data => dispatch(hackerCommentsFetchSuccess({
+        response.json().then(data =>
+          dispatch(hackerCommentsFetchSuccess({
             ...data,
             timeAgo: data.time_ago,
             comments: flattenComment(data).map(v => ({ ...v, timeAgo: v.time_ago })),
-          })),
-        ),
-      )
+          }))))
       .catch(error => dispatch(hackerCommentsFetchFailure(error)));
   };
 }
@@ -81,8 +79,7 @@ export function fetchHackerNews(type, page) {
             const { comments_count, time_ago, ...rest } = v;
             return { ...rest, commentsCount: comments_count, timeAgo: time_ago };
           }))
-          .then(data => dispatch(hackerNewsFetchSuccess(type, page, data))),
-      )
+          .then(data => dispatch(hackerNewsFetchSuccess(type, page, data))))
       .catch(error => dispatch(hackerNewsFetchFailure(error)));
   };
 }

@@ -24,14 +24,22 @@ const defaultProps = {
   url: '',
 };
 
-function HackerNewsListItem({ commentsCount, id, points, timeAgo, title, url, user }) {
+function HackerNewsListItem({
+  commentsCount,
+  id,
+  points,
+  timeAgo,
+  title,
+  url,
+  user,
+}) {
   return (
     <div className="HackerNewsListItem">
       <a className="HackerNewsListItem__title" href={url} target="__blank">{title}</a>
       <div className="HackerNewsListItem__info">
         {points} points by {' '}
-        <Link to={`/user/${user}`}>{user}</Link> {timeAgo} | {' '}
-        <Link to={`/item/${id}`}>{commentsCount} comments</Link>
+        <Link href={`/user/${user}`} to={`/user/${user}`}>{user}</Link> {timeAgo} | {' '}
+        <Link href={`/item/${id}/`} to={`/item/${id}`}>{commentsCount} comments</Link>
       </div>
     </div>
   );

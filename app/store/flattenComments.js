@@ -13,21 +13,17 @@ function flattenComments(data) {
   ];
 
   while (iterables.length !== 0) {
-    results = iterables.map(
-      iterable => iterable.comments.map(
-        comment => ({
-          ...comment,
-          comments: comment.comments.map(v => v.id),
-          parent: iterable.parent,
-        }),
-      ),
-    ).reduce((prev, next) => next.concat(prev), results);
+    results = iterables.map(iterable =>
+      iterable.comments.map(comment => ({
+        ...comment,
+        comments: comment.comments.map(v => v.id),
+        parent: iterable.parent,
+      }))).reduce((prev, next) => next.concat(prev), results);
 
-    iterables = iterables.map(
-      iterable => iterable.comments.map(
-        children => ({ parent: children.id, comments: children.comments }),
-      ),
-    ).reduce((prev, next) => next.concat(prev), []);
+    iterables = iterables.map(iterable =>
+      iterable.comments.map(children =>
+        ({ parent: children.id, comments: children.comments })))
+      .reduce((prev, next) => next.concat(prev), []);
   }
 
   return results;
