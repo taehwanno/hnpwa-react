@@ -40,7 +40,7 @@ class HackerNewsItem extends React.Component {
         <div className="HackerNewsItem__content">
           <HackerNewsListItem {...item.toJS()} />
         </div>
-        {comments.map(id => <HackerNewsComment commentId={id} key={id} />)}
+        {comments.map(id => <HackerNewsComment commentId={id} key={id} />).toArray()}
       </div>
     );
   }

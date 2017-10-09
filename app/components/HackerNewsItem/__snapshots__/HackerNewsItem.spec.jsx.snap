@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HackerNewsItem /> should match snapshot when render default 1`] = `null`;
+exports[`<HackerNewsItem /> should match snapshot when render default 1`] = `""`;
 
 exports[`<HackerNewsItem /> should render <HackerNewsListItem /> and <HackerNewsCommentContainer /> 1`] = `
 <div

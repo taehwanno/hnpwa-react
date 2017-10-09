@@ -57,7 +57,7 @@ export class HackerNewsCommentInner extends React.Component {
             className="HackerNewsComment__content"
             dangerouslySetInnerHTML={{ __html: contents.get('content') }} // eslint-disable-line react/no-danger
           />
-          {comments.map(id => <HackerNewsComment commentId={id} key={id} />)}
+          {comments.map(id => <HackerNewsComment commentId={id} key={id} />).toArray()}
         </div>
       </div>
     );

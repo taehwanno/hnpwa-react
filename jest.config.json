@@ -22,7 +22,8 @@
     "<rootDir>/test"
   ],
   "setupFiles": [
-    "<rootDir>/test/fetch.js"
+    "<rootDir>/test/shim.js",
+    "<rootDir>/test/setup.js"
   ],
   "snapshotSerializers": ["enzyme-to-json/serializer"],
   "transformIgnorePatterns": [

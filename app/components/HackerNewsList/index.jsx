@@ -22,7 +22,7 @@ function HackerNewsList({ feeds }) {
           <span className="HackerNewsList__index">{index + 1}</span>
           <HackerNewsListItem {...feed.toJS()} />
         </li>
-      ))}
+      )).toArray()}
     </ul>
   );
 }
