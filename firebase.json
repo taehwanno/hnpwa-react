@@ -14,10 +14,6 @@
       {
         "source": "/",
         "function": "app"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ]
   }

@@ -9,6 +9,7 @@ module.exports = {
   target: 'node',
   output: {
     path: paths.functions,
+    publicPath: '/',
     filename: 'server.bundle.js',
     libraryTarget: 'commonjs2',
   },
