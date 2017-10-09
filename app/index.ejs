@@ -31,6 +31,10 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="/favicon/favicon.ico">
 
+  <!-- Google Analytics: event listener to capture uncaught errors. -->
+  <script>window.addEventListener('error', window.__e=function f(e){f.q=f.q||[];f.q.push(e)});</script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+
   <% for (var css in htmlWebpackPlugin.files.css) { %>
   <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
   <% } %>

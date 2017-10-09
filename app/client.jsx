@@ -8,6 +8,7 @@ import transit from 'transit-immutable-js';
 
 import configureStore from 'store/configureStore';
 import { history, middleware as routerMiddleware } from 'store/history';
+import activateAnalytics from './analytics';
 
 import './scss/style.scss';
 
@@ -47,3 +48,4 @@ if (__DEV__) {
 }
 
 render();
+activateAnalytics();

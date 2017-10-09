@@ -31,6 +31,7 @@
     "*.{css,scss}": "sh ./scripts/scss-lint.sh"
   },
   "dependencies": {
+    "autotrack": "^2.4.1",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
@@ -50,7 +51,8 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "transit-immutable-js": "^0.7.0",
-    "transit-js": "^0.8.846"
+    "transit-js": "^0.8.846",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.12",

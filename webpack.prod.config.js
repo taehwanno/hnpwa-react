@@ -31,6 +31,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
     rules: [
       {
         test: /\.jsx?$/,
+        exclude: /node_modules\/(?!(autotrack|dom-utils))/,
         loader: 'babel-loader'
       },
       {
