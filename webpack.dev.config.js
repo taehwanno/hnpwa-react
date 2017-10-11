@@ -13,7 +13,6 @@ module.exports = () => {
     cache: true,
     entry: {
       app: [
-        'babel-polyfill',
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://0.0.0.0:8080',
         'webpack/hot/only-dev-server',
@@ -99,9 +98,9 @@ module.exports = () => {
       }),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
-        name: ['vendor'],
+        name: 'vendor',
         filename: '[name].bundle.js',
-        minChunks: Infinity,
+        minChunks: module => module.resource && (/node_modules/).test(module.resource),
       }),
     ],
   });

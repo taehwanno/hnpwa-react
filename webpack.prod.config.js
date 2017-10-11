@@ -15,10 +15,7 @@ const webpackBaseConfig = require('./webpack.base.config');
 
 module.exports = webpackMerge(webpackBaseConfig, {
   entry: {
-    app: [
-      'babel-polyfill',
-      path.resolve(paths.app, 'client.jsx'),
-    ],
+    app: path.resolve(paths.app, 'client.jsx'),
   },
   output: {
     filename: '[name].bundle-[chunkhash].js',
@@ -112,7 +109,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor'],
       filename: '[name].bundle-[chunkhash].js',
-      minChunks: Infinity,
+      minChunks: module => module.resource && (/node_modules/).test(module.resource),
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,

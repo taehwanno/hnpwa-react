@@ -19,13 +19,10 @@ module.exports = {
     vendor: [
       'classnames',
       'immutable',
-      'normalize.css',
       'react',
       'prop-types',
       'react-dom',
       'react-redux',
-      'react-router-dom',
-      'react-router-redux',
       'redux',
       'redux-immutable',
       'redux-thunk',
