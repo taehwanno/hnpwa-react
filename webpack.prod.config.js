@@ -111,6 +111,11 @@ module.exports = webpackMerge(webpackBaseConfig, {
       filename: '[name].bundle-[chunkhash].js',
       minChunks: module => module.resource && (/node_modules/).test(module.resource),
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      chunks: ['analytics'],
+      async: 'async-analytics',
+      minChunks: module => module.resource && (/node.modules/).test(module.resource),
+    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
