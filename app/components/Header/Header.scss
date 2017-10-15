@@ -2,7 +2,7 @@
   background-color: $color-main;
   box-sizing: border-box;
   height: $header-height;
-  padding: 18px 70px;
+  padding: 16px 100px;
   width: 100%;
 }
 
@@ -19,18 +19,27 @@
 
 .Header__logo {
   height: 20px;
+  left: 20px;
   position: absolute;
-  right: 50px;
   top: 15px;
+}
+
+.Header__title {
+  color: $color-white;
+  float: right;
+}
+
+@media (max-width: 600px) {
+  .Header__title {
+    display: none;
+  }
 }
 
 @media (max-width: 450px) {
   .Header {
     padding: 18px 10px;
   }
-}
 
-@media (max-width: 370px) {
   .Header__logo {
     display: none;
   }

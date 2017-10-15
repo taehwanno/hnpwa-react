@@ -10,4 +10,8 @@ stories
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/top/1']}>{story()}</MemoryRouter>
   ))
-  .add('default', () => <Header />);
+  .add('default', () => (
+    <div style={{ position: 'relative' }}>
+      <Header />
+    </div>
+  ));

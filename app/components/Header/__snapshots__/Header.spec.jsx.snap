@@ -4,6 +4,17 @@ exports[`<Header /> should match snapshot when render default 1`] = `
 <nav
   className="Header"
 >
+  <Link
+    href="/news/1"
+    replace={false}
+    to="/news/1"
+  >
+    <img
+      alt="HNPWA Logo"
+      className="Header__logo"
+      src="test-file-stub"
+    />
+  </Link>
   <NavLink
     activeClassName="Header__navlink--active"
     ariaCurrent="true"
@@ -49,10 +60,16 @@ exports[`<Header /> should match snapshot when render default 1`] = `
   >
     Jobs
   </NavLink>
-  <img
-    alt="HNPWA Logo"
-    className="Header__logo"
-    src="test-file-stub"
-  />
+  <a
+    href="https://github.com/taehwanno/hnpwa-react"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <span
+      className="Header__title"
+    >
+      HNPWA with React
+    </span>
+  </a>
 </nav>
 `;
