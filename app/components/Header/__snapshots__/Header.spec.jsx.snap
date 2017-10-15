@@ -8,7 +8,8 @@ exports[`<Header /> should match snapshot when render default 1`] = `
     activeClassName="Header__navlink--active"
     ariaCurrent="true"
     className="Header__navlink"
-    to="/news"
+    isActive={[Function]}
+    to="/news/1"
   >
     Top
   </NavLink>
@@ -16,7 +17,8 @@ exports[`<Header /> should match snapshot when render default 1`] = `
     activeClassName="Header__navlink--active"
     ariaCurrent="true"
     className="Header__navlink"
-    to="/newest"
+    isActive={[Function]}
+    to="/newest/1"
   >
     New
   </NavLink>
@@ -24,7 +26,8 @@ exports[`<Header /> should match snapshot when render default 1`] = `
     activeClassName="Header__navlink--active"
     ariaCurrent="true"
     className="Header__navlink"
-    to="/show"
+    isActive={[Function]}
+    to="/show/1"
   >
     Show
   </NavLink>
@@ -32,7 +35,8 @@ exports[`<Header /> should match snapshot when render default 1`] = `
     activeClassName="Header__navlink--active"
     ariaCurrent="true"
     className="Header__navlink"
-    to="/ask"
+    isActive={[Function]}
+    to="/ask/1"
   >
     Ask
   </NavLink>
@@ -40,7 +44,8 @@ exports[`<Header /> should match snapshot when render default 1`] = `
     activeClassName="Header__navlink--active"
     ariaCurrent="true"
     className="Header__navlink"
-    to="/jobs"
+    isActive={[Function]}
+    to="/jobs/1"
   >
     Jobs
   </NavLink>
