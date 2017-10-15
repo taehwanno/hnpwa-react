@@ -12,7 +12,7 @@ const req = require.context('../app', true, /\.stories\.jsx$/);
 
 setOptions({
   name: 'HNPWA with React',
-  url: 'https://github.com/taehwanno/hnpwa-with-react',
+  url: 'https://github.com/taehwanno/hnpwa-react',
 });
 
 function loadStories() {

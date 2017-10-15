@@ -2,7 +2,7 @@ version: 2
 
 jobs:
   build:
-    working_directory: ~/hnpwa-with-react
+    working_directory: ~/hnpwa-react
     docker:
       - image: circleci/node:8.4.0
       - image: circleci/ruby:2.4
