@@ -17,6 +17,7 @@ exports[`<HackerNewsListItem /> should match snapshot when render default 1`] = 
      | 
      
     <Link
+      className="HackerNewsListItem__link"
       href="/item/0/"
       replace={false}
       to="/item/0"
@@ -44,6 +45,7 @@ exports[`<HackerNewsListItem /> should not render points when props.points === n
   >
      by 
     <Link
+      className="HackerNewsListItem__link"
       href="/user/BradyDale"
       replace={false}
       to="/user/BradyDale"
@@ -55,6 +57,7 @@ exports[`<HackerNewsListItem /> should not render points when props.points === n
      | 
      
     <Link
+      className="HackerNewsListItem__link"
       href="/item/15350263/"
       replace={false}
       to="/item/15350263"
@@ -86,6 +89,7 @@ exports[`<HackerNewsListItem /> should not render user when props.user === null 
      | 
      
     <Link
+      className="HackerNewsListItem__link"
       href="/item/15350263/"
       replace={false}
       to="/item/15350263"
