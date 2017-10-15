@@ -116,6 +116,9 @@ module.exports = webpackMerge(webpackBaseConfig, {
       async: 'async-analytics',
       minChunks: module => module.resource && (/node.modules/).test(module.resource),
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime'
+    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
