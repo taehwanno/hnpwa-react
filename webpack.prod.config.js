@@ -114,7 +114,17 @@ module.exports = webpackMerge(webpackBaseConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       chunks: ['analytics'],
       async: 'async-analytics',
-      minChunks: module => module.resource && (/node.modules/).test(module.resource),
+      minChunks: module => module.resource && (/node_modules/).test(module.resource),
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      chunks: ['user', 'item', 'feed'],
+      async: 'async-commons',
+      minChunks: (module, count) => module.resource && (/node_modules/).test(module.resource),
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      chunks: ['user', 'item', 'feed'],
+      async: 'commons',
+      minChunks: (module, count) => module.resource && !(/node_modules/).test(module.resource),
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
