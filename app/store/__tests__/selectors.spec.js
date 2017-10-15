@@ -4,7 +4,10 @@ import * as selectors from '../selectors';
 describe('selectors', () => {
   const state = Immutable.fromJS({
     byId: {},
-    comments: Immutable.Map(),
+    comments: {
+      byId: Immutable.Map(),
+      posts: Immutable.Map(),
+    },
     currentPage: 1,
     items: {
       ask: {},
@@ -126,6 +129,14 @@ describe('selectors', () => {
     expect(selectors.getItemId(null, props)).toBe(props.itemId);
   });
 
+  it('should select comments.byId', () => {
+    expect(selectors.getCommentsById(state)).toEqual(state.getIn(['comments', 'byId']));
+  });
+
+  it('should select comments.posts', () => {
+    expect(selectors.getCommentsPosts(state)).toEqual(state.getIn(['comments', 'posts']));
+  });
+
   describe('getItem', () => {
     it('should return null when matched itemId\'s comment not exist', () => {
       expect(selectors.getItem(state, { itemId: 1234 })).toEqual(null);
@@ -134,9 +145,11 @@ describe('selectors', () => {
     it('should return item when matched itemId\'s comment exist', () => {
       const comment = Immutable.Map();
       expect(selectors.getItem(Immutable.Map({
-        comments: Immutable.Map(new Map([
-          [1234, comment],
-        ])),
+        comments: Immutable.Map({
+          posts: Immutable.Map(new Map([
+            [1234, comment],
+          ])),
+        }),
       }), { itemId: 1234 })).toEqual(comment);
     });
   });
@@ -144,7 +157,9 @@ describe('selectors', () => {
   it('should select matched id\'s comments', () => {
     const comment = Immutable.Map({ comments: Immutable.List([1, 2]) });
     const currentState = Immutable.Map({
-      comments: Immutable.Map(new Map([[4321, comment]])),
+      comments: Immutable.Map({
+        byId: Immutable.Map(new Map([[4321, comment]])),
+      }),
     });
     expect(selectors.getChildrenComments(currentState, { commentId: 4321 }))
       .toEqual(comment.get('comments'));
@@ -153,7 +168,9 @@ describe('selectors', () => {
   it('should return selector that select children comments', () => {
     const comment = Immutable.Map({ comments: Immutable.List([1, 2]) });
     const currentState = Immutable.Map({
-      comments: Immutable.Map(new Map([[4321, comment]])),
+      comments: Immutable.Map({
+        byId: Immutable.Map(new Map([[4321, comment]])),
+      }),
     });
     const getChildrenComments = selectors.makeGetChildrenComments();
     expect(getChildrenComments(currentState, { commentId: 4321 })).toEqual(comment.get('comments'));
@@ -162,7 +179,9 @@ describe('selectors', () => {
   it('should return selector that select comment contents', () => {
     const comment = Immutable.Map();
     const currentState = Immutable.Map({
-      comments: Immutable.Map(new Map([[4321, comment]])),
+      comments: Immutable.Map({
+        byId: Immutable.Map(new Map([[4321, comment]])),
+      }),
     });
     const getCommentContents = selectors.makeGetCommentContents();
     expect(getCommentContents(currentState, { commentId: 4321 })).toEqual(comment);

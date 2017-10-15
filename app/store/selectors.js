@@ -36,28 +36,37 @@ export const getSpecificUser = createSelector(
 export const getComments = state => state.get('comments');
 export const getCommentId = (_, props) => props.commentId;
 export const getItemId = (_, props) => props.itemId;
-export const getItem = createSelector(
+export const getCommentsById = createSelector(
   getComments,
+  comments => comments.get('byId'),
+);
+export const getCommentsPosts = createSelector(
+  getComments,
+  comments => comments.get('posts'),
+);
+
+export const getItem = createSelector(
+  getCommentsPosts,
   getItemId,
-  (comments, itemId) => {
-    const item = comments.get(itemId);
+  (commentsPosts, itemId) => {
+    const item = commentsPosts.get(itemId);
 
     if (!item) return null;
     return item;
   },
 );
 export const getChildrenComments = createSelector(
-  getComments,
+  getCommentsById,
   getCommentId,
-  (comments, commentId) => comments.getIn([commentId, 'comments']),
+  (commentsIds, commentId) => commentsIds.getIn([commentId, 'comments']),
 );
 export const makeGetChildrenComments = () => createSelector(
-  getComments,
+  getCommentsById,
   getCommentId,
-  (comments, commentId) => comments.getIn([commentId, 'comments']),
+  (commentsIds, commentId) => commentsIds.getIn([commentId, 'comments']),
 );
 export const makeGetCommentContents = () => createSelector(
-  getComments,
+  getCommentsById,
   getCommentId,
-  (comments, commentId) => comments.get(commentId),
+  (commentsIds, commentId) => commentsIds.get(commentId),
 );

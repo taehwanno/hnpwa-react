@@ -1,15 +1,15 @@
 import Immutable from 'immutable';
 
 import * as ACTIONS from 'store/actionTypes';
-import comments from 'store/comments';
+import byId from 'store/comments/byId';
 
-describe('comments reducer', () => {
+describe('comments.byId reducer', () => {
   it('should return the initial state', () => {
-    expect(comments(undefined, {})).toEqual(Immutable.Map());
+    expect(byId(undefined, {})).toEqual(Immutable.Map());
   });
 
   it('should handle HACKER_COMMENTS_FETCH_SUCCESS', () => {
-    expect(comments(undefined, {
+    expect(byId(undefined, {
       type: ACTIONS.HACKER_COMMENTS_FETCH_SUCCESS,
       payload: {
         id: 3338485,
