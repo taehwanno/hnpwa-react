@@ -13,10 +13,12 @@
 .Pagination__button {
   background-color: transparent;
   border: 0;
+  cursor: pointer;
 }
 
 .Pagination__button--disabled {
   color: $color-gray;
+  cursor: not-allowed;
 }
 
 .Pagination__number {
