@@ -52,7 +52,8 @@
     "reselect": "^3.0.1",
     "transit-immutable-js": "^0.7.0",
     "transit-js": "^0.8.846",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.12",

@@ -28,6 +28,7 @@ module.exports = {
       'redux-thunk',
       'reselect',
       'transit-immutable-js',
+      'whatwg-fetch',
     ],
   },
   module: {
