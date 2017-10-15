@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withDone } from 'react-router-server';
 
 import { fetchHackerUser } from 'store/actions';
 import { getSpecificUser } from 'store/selectors';
@@ -12,4 +13,7 @@ const mapDispatchToProps = {
   onUserFetch: fetchHackerUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HackerNewsUser);
+export default withDone(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HackerNewsUser));
