@@ -10,7 +10,11 @@ const propTypes = {
 function ItemRoute({ match }) {
   const id = parseInt(match.params.id, 10);
 
-  return <HackerNewsItemContainer commentId={id} itemId={id} />;
+  return (
+    <div className="content-container">
+      <HackerNewsItemContainer commentId={id} itemId={id} />
+    </div>
+  );
 }
 
 ItemRoute.propTypes = propTypes;

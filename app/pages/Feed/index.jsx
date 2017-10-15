@@ -14,7 +14,9 @@ function FeedRoute({ location }) {
   return (
     <div>
       <LocationPaginationContainer type={feedType} />
-      <HackerNewsListContainer type={feedType} />
+      <div className="content-container">
+        <HackerNewsListContainer type={feedType} />
+      </div>
     </div>
   );
 }

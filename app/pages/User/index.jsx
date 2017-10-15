@@ -8,7 +8,11 @@ const propTypes = {
 };
 
 function UserRoute({ match }) {
-  return <HackerNewsUserContainer user={match.params.id} />;
+  return (
+    <div className="content-container">
+      <HackerNewsUserContainer user={match.params.id} />
+    </div>
+  );
 }
 
 UserRoute.propTypes = propTypes;
