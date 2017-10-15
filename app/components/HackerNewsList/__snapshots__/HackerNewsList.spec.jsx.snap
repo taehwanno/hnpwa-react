@@ -3,13 +3,34 @@
 exports[`<HackerNewsList /> should match snapshot when render default 1`] = `
 <ul
   className="HackerNewsList"
-/>
+>
+  <LoadingIndicator
+    active={true}
+    style={
+      Object {
+        "left": "calc(50% - 24px)",
+        "marginTop": "10px",
+        "position": "absolute",
+      }
+    }
+  />
+</ul>
 `;
 
 exports[`<HackerNewsList /> should match snapshot when render feeds 1`] = `
 <ul
   className="HackerNewsList"
 >
+  <LoadingIndicator
+    active={false}
+    style={
+      Object {
+        "left": "calc(50% - 24px)",
+        "marginTop": "10px",
+        "position": "absolute",
+      }
+    }
+  />
   <li
     className="HackerNewsList__item"
     key="15350263"

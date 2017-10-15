@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import LoadingIndicator from 'components/LoadingIndicator';
+
 import './HackerNewsUser.scss';
 
 const propTypes = {
@@ -33,7 +35,14 @@ class HackerNewsUser extends React.Component {
   render() {
     const { information, user } = this.props;
 
-    if (!information) return null;
+    if (!information) {
+      return (
+        <LoadingIndicator
+          active
+          style={{ position: 'absolute', left: 'calc(50% - 24px)', marginTop: '30px' }}
+        />
+      );
+    }
 
     return (
       <div className="HackerNewsUser">

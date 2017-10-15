@@ -1,0 +1,43 @@
+$_animation-delay: 200ms;
+$_translate-y: 10px;
+
+.LoadingIndicator__col {
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: up-and-down;
+  background-color: transparentize($color-main, 0.1);
+  float: left;
+  height: 30px;
+  width: 10px;
+}
+
+.LoadingIndicator__col:nth-of-type(1) {
+  animation-delay: $_animation-delay;
+}
+
+.LoadingIndicator__col:nth-of-type(2) {
+  animation-delay: $_animation-delay * 2;
+  margin: 0 7px;
+}
+
+.LoadingIndicator__col:nth-of-type(3) {
+  animation-delay: $_animation-delay * 3;
+}
+
+@keyframes up-and-down {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY($_translate-y);
+  }
+
+  75% {
+    transform: translateY(-$_translate-y);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

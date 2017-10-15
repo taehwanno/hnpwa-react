@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadingIndicator /> should return DOM tree when props.active === true 1`] = `
+<div
+  className="LoadingIndicator"
+  style={Object {}}
+>
+  <div
+    className="LoadingIndicator__col"
+  />
+  <div
+    className="LoadingIndicator__col"
+  />
+  <div
+    className="LoadingIndicator__col"
+  />
+</div>
+`;

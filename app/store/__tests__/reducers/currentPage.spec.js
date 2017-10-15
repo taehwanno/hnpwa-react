@@ -6,9 +6,9 @@ describe('currentPage reducer', () => {
     expect(currentPage(undefined, {})).toBe(1);
   });
 
-  it('should handle HACKER_NEWS_FETCH_SUCCESS', () => {
+  it('should handle HACKER_NEWS_FETCH_REQUEST', () => {
     expect(currentPage(1, {
-      type: ACTIONS.HACKER_NEWS_FETCH_SUCCESS,
+      type: ACTIONS.HACKER_NEWS_FETCH_REQUEST,
       payload: {
         page: 2,
       },

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import HackerNewsComment from 'containers/HackerNewsComment';
 import HackerNewsListItem from 'components/HackerNewsListItem';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 import './HackerNewsItem.scss';
 
@@ -33,7 +34,14 @@ class HackerNewsItem extends React.Component {
 
   render() {
     const { comments, item } = this.props;
-    if (!comments || !item) return null;
+    if (!comments || !item) {
+      return (
+        <LoadingIndicator
+          active
+          style={{ position: 'absolute', left: 'calc(50% - 24px)', marginTop: '30px' }}
+        />
+      );
+    }
 
     return (
       <div className="HackerNewsItem">

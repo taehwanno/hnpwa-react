@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HackerNewsUser /> should match snapshot when render default 1`] = `""`;
+exports[`<HackerNewsUser /> should match snapshot when render default 1`] = `
+<LoadingIndicator
+  active={true}
+  style={
+    Object {
+      "left": "calc(50% - 24px)",
+      "marginTop": "30px",
+      "position": "absolute",
+    }
+  }
+/>
+`;
 
 exports[`<HackerNewsUser /> should render user view when information exist 1`] = `
 <div
