@@ -12,14 +12,7 @@ exports[`<HackerNewsListItem /> should match snapshot when render default 1`] = 
   <div
     className="HackerNewsListItem__info"
   >
-    0
-     points by 
-     
-    <Link
-      href="/user/"
-      replace={false}
-      to="/user/"
-    />
+    0 points
      
      | 
      
@@ -29,6 +22,75 @@ exports[`<HackerNewsListItem /> should match snapshot when render default 1`] = 
       to="/item/0"
     >
       0
+       comments
+    </Link>
+  </div>
+</div>
+`;
+
+exports[`<HackerNewsListItem /> should not render points when props.points === null 1`] = `
+<div
+  className="HackerNewsListItem"
+>
+  <a
+    className="HackerNewsListItem__title"
+    href="http://observer.com/2017/09/keybase-max-krohn-chris-coyne-okcupid/"
+    target="__blank"
+  >
+    Keybase's mission is to make encryption mainstream
+  </a>
+  <div
+    className="HackerNewsListItem__info"
+  >
+     by 
+    <Link
+      href="/user/BradyDale"
+      replace={false}
+      to="/user/BradyDale"
+    >
+      BradyDale
+    </Link>
+     
+    20 hours ago
+     | 
+     
+    <Link
+      href="/item/15350263/"
+      replace={false}
+      to="/item/15350263"
+    >
+      48
+       comments
+    </Link>
+  </div>
+</div>
+`;
+
+exports[`<HackerNewsListItem /> should not render user when props.user === null 1`] = `
+<div
+  className="HackerNewsListItem"
+>
+  <a
+    className="HackerNewsListItem__title"
+    href="http://observer.com/2017/09/keybase-max-krohn-chris-coyne-okcupid/"
+    target="__blank"
+  >
+    Keybase's mission is to make encryption mainstream
+  </a>
+  <div
+    className="HackerNewsListItem__info"
+  >
+    147 points
+     
+    20 hours ago
+     | 
+     
+    <Link
+      href="/item/15350263/"
+      replace={false}
+      to="/item/15350263"
+    >
+      48
        comments
     </Link>
   </div>
