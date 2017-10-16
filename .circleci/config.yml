@@ -1,13 +1,16 @@
+defaults: &defaults
+  working_directory: ~/hnpwa-react
+  docker:
+      - image: circleci/node:8.5.0
+      - image: circleci/ruby:2.4
+  environment:
+      TZ: "/usr/share/zoneinfo/Asia/Seoul"
+
 version: 2
 
 jobs:
-  build:
-    working_directory: ~/hnpwa-react
-    docker:
-      - image: circleci/node:8.4.0
-      - image: circleci/ruby:2.4
-    environment:
-      TZ: "/usr/share/zoneinfo/Asia/Seoul"
+  test:
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -26,3 +29,51 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
+
+  deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependency
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+            - ~/.yarn-cache
+      - restore_cache:
+          key: function-dependency-cache-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
+      - run:
+          name: Install GCP Function Dependency
+          command: cd functions && yarn install && cd ..
+      - save_cache:
+          key: dependency-cache-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
+          paths:
+            - ./functions/node_modules
+            - ~/.yarn-cache
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Deploy to firebase
+          command: |
+            if [ -n "${CIRCLE_TAG}" ]; then
+              yarn deploy -- --token=$FIREBASE_DEPLOY_TOKEN
+            else
+              yarn deploy:stage -- --token=$FIREBASE_DEPLOY_TOKEN
+            fi
+
+workflows:
+  version: 2
+  test-and-build-deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master

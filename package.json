@@ -9,7 +9,7 @@
     "analyze": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js --env.prod --profile --json > stats.json && yarn analyze:cache",
     "analyze:cache": "webpack-bundle-analyzer stats.json bundleDir=build",
     "build": "yarn build:client && yarn build:server",
-    "build:client": "yarn lint && cross-env NODE_ENV=production webpack --config webpack.prod.config.js --progress --env.prod",
+    "build:client": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js --progress --env.prod",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.server.config.js --progress",
     "deploy": "firebase deploy --project hnpwa-react",
     "deploy:stage": "firebase deploy --project hnpwa-react-stage",
