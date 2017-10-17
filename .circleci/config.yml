@@ -35,6 +35,18 @@ jobs:
     steps:
       - checkout
       - restore_cache:
+          key: bundler-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Install bundle
+          command: bundle install
+      - save_cache:
+          key: bundler-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./bundler
+      - run:
+          name: Lint
+          command: yarn lint
+      - restore_cache:
           key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependency
