@@ -1,4 +1,5 @@
 build/
+bundler/
 coverage/
 functions/node_modules/
 functions/server.bundle.js

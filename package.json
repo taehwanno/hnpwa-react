@@ -15,7 +15,7 @@
     "deploy:stage": "firebase deploy --project hnpwa-react-stage",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint app test --ext .js,.jsx",
-    "lint:scss": "sh ./scripts/scss-lint.sh app/",
+    "lint:scss": "bundle exec scss-lint app/",
     "ncu": "ncu",
     "precommit": "lint-staged",
     "prepush": "yarn lint",
@@ -28,7 +28,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint",
-    "*.{css,scss}": "sh ./scripts/scss-lint.sh"
+    "*.{css,scss}": "bundle exec scss-lint"
   },
   "dependencies": {
     "autotrack": "^2.4.1",
