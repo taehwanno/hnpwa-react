@@ -2,27 +2,53 @@ defaults: &defaults
   working_directory: ~/hnpwa-react
   docker:
       - image: circleci/node:8.5.0
-      - image: circleci/ruby:2.4
   environment:
       TZ: "/usr/share/zoneinfo/Asia/Seoul"
 
 version: 2
 
 jobs:
-  test:
+  checkout:
     <<: *defaults
     steps:
       - checkout
+      - save_cache:
+          key: repository-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/hnpwa-react
+
+  dependency:
+    <<: *defaults
+    steps:
       - restore_cache:
-          key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: repository-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: root-npm-dependency-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
-          name: Install Dependency
+          name: Install Root Dependency
           command: yarn install
       - save_cache:
-          key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: root-npm-dependency-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
             - ~/.yarn-cache
+      - restore_cache:
+          key: function-npm-dependency-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
+      - run:
+          name: Install GCP Function Dependency
+          command: cd functions && yarn install && cd ..
+      - save_cache:
+          key: function-npm-dependency-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
+          paths:
+            - ./functions/node_modules
+
+  test:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: repository-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: root-npm-dependency-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Test
           command: yarn test:coverage -- --maxWorkers=2
@@ -30,62 +56,97 @@ jobs:
           path: coverage
           destination: coverage
 
-  deploy:
+  build:
     <<: *defaults
     steps:
-      - checkout
       - restore_cache:
-          key: bundler-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: Install bundle
-          command: bundle install
-      - save_cache:
-          key: bundler-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - ./bundler
-      - run:
-          name: Lint
-          command: yarn lint
+          key: repository-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependency
-          command: yarn install
-      - save_cache:
-          key: dependency-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ./node_modules
-            - ~/.yarn-cache
+          key: root-npm-dependency-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - restore_cache:
-          key: function-dependency-cache-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
-      - run:
-          name: Install GCP Function Dependency
-          command: cd functions && yarn install && cd ..
-      - save_cache:
-          key: dependency-cache-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
-          paths:
-            - ./functions/node_modules
-            - ~/.yarn-cache
+          key: function-npm-dependency-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
       - run:
           name: Build
           command: yarn build
+      - save_cache:
+          key: build-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/hnpwa-react/build
+            - ~/hnpwa-react/functions/server.bundle.js
+            - ~/hnpwa-react/functions/views
+
+  deploy-stage:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: repository-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: root-npm-dependency-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: function-npm-dependency-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
+      - restore_cache:
+          key: build-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Deploy to firebase
-          command: |
-            if [ -n "${CIRCLE_TAG}" ]; then
-              yarn deploy -- --token=$FIREBASE_DEPLOY_TOKEN
-            else
-              yarn deploy:stage -- --token=$FIREBASE_DEPLOY_TOKEN
-            fi
+          command: yarn deploy:stage
+
+  deploy-production:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: repository-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: root-npm-dependency-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: function-npm-dependency-{{ .Branch }}-{{ checksum "functions/yarn.lock" }}
+      - restore_cache:
+          key: build-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Deploy to firebase
+          command: yarn deploy
 
 workflows:
   version: 2
   test-and-build-deploy:
     jobs:
-      - test
-      - deploy:
+      - checkout:
+          filters:
+            tags:
+              only: /.*/
+      - dependency:
+          requires:
+            - checkout
+          filters:
+            tags:
+              only: /.*/
+      - test:
+          requires:
+            - dependency
+          filters:
+            tags:
+              only: /.*/
+      - build:
           requires:
             - test
           filters:
             branches:
               only: master
+            tags:
+              only: /.*/
+      - deploy-stage:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/
+      - deploy-production:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
+
