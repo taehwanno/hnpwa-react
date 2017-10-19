@@ -22,7 +22,6 @@ workboxSW.router.registerRoute(
   workboxSW.strategies.networkFirst({ networkTimeoutSeconds: 3 })
 );
 
-workboxSW.router.registerRoute(
-  'https://www.google-analytics.com/analytics.js',
-  workboxSW.strategies.staleWhileRevalidate()
-);
+workboxSW.router.setDefaultHandler({
+  handler: workboxSW.strategies.staleWhileRevalidate()
+});
