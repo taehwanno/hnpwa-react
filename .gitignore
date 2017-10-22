@@ -4,6 +4,7 @@ coverage/
 functions/node_modules/
 functions/server.bundle.js
 functions/views/
+gh-pages/
 node_modules/
 stats.json
 .idea/
