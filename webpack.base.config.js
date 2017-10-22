@@ -68,7 +68,7 @@ module.exports = {
     new PreloadWebpackPlugin({
       rel: 'preload',
       fileBlacklist: [/\.map/, /\.hot-update\.js$/],
-      include: ['app', 'vendor'],
+      include: ['app', 'runtime', 'vendor'],
     }),
     new PreloadWebpackPlugin(({
       rel: 'prefetch',
