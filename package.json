@@ -24,7 +24,10 @@
     "test:watch": "yarn test -- --watch",
     "coverage": "open ./coverage/lcov-report/index.html",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build-storybook": "build-storybook"
+    "gh-pages": "yarn gh-pages:clean && yarn gh-pages:build && yarn gh-pages:publish",
+    "gh-pages:clean": "rimraf gh-pages",
+    "gh-pages:build": "yarn build-storybook -o gh-pages",
+    "gh-pages:publish": "git-directory-deploy --directory gh-pages --message '[skip ci]'"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint",
@@ -95,6 +98,7 @@
     "eslint-plugin-react": "^7.4.0",
     "extract-text-webpack-plugin": "^3.0.1",
     "firebase-tools": "^3.13.1",
+    "git-directory-deploy": "^1.5.1",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
     "ignore-loader": "^0.1.2",
@@ -111,6 +115,7 @@
     "react-test-renderer": "^16.0.0",
     "redux-mock-store": "^1.3.0",
     "resolve-url-loader": "^2.1.1",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "sass-resources-loader": "^1.3.1",
     "style-loader": "^0.19.0",
