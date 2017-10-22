@@ -135,6 +135,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
       minimize: true,
       debug: false,
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new UglifyJsPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',
