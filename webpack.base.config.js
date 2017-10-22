@@ -1,6 +1,11 @@
 const path = require('path');
 
-const webpack = require('webpack');
+const {
+  DefinePlugin,
+  NamedModulesPlugin,
+  NoEmitOnErrorsPlugin,
+} = require('webpack');
+
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
@@ -69,13 +74,13 @@ module.exports = {
       rel: 'prefetch',
       include: ['feed', 'item', 'user'],
     })),
-    new webpack.DefinePlugin({
+    new DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': process.env.NODE_ENV === 'development',
       '__PROD__': process.env.NODE_ENV === 'production',
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new NamedModulesPlugin(),
+    new NoEmitOnErrorsPlugin(),
   ],
   resolve: {
     alias: {

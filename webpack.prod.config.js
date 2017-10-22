@@ -1,6 +1,11 @@
 const path = require('path');
 
-const webpack = require('webpack');
+const { optimize, LoaderOptionsPlugin, NormalModuleReplacementPlugin } = require('webpack');
+const {
+  CommonsChunkPlugin,
+  ModuleConcatenationPlugin,
+} = optimize;
+
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -104,38 +109,33 @@ module.exports = webpackMerge(webpackBaseConfig, {
       filename: 'app.bundle-[chunkhash].css',
     }),
     new CSSOWebpackPlugin(),
-    new webpack.NormalModuleReplacementPlugin(
+    new NormalModuleReplacementPlugin(
       /^pages$/,
       'pages/index.async.js'
     ),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       name: ['vendor'],
       filename: '[name].bundle-[chunkhash].js',
       minChunks: module => module.resource && (/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       chunks: ['analytics'],
       async: 'async-analytics',
       minChunks: module => module.resource && (/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       chunks: ['user', 'item', 'feed'],
       async: 'async-commons',
       minChunks: (module, count) => module.resource && (/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       chunks: ['user', 'item', 'feed'],
       async: 'commons',
       minChunks: (module, count) => module.resource && !(/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime'
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    new CommonsChunkPlugin({ name: 'runtime' }),
+    new LoaderOptionsPlugin({ minimize: true, debug: false }),
+    new ModuleConcatenationPlugin(),
     new UglifyJsPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',
