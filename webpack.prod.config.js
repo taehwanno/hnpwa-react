@@ -5,6 +5,7 @@ const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CSSOWebpackPlugin = require('csso-webpack-plugin').default;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -102,6 +103,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
       allChunks: true,
       filename: 'app.bundle-[chunkhash].css',
     }),
+    new CSSOWebpackPlugin(),
     new webpack.NormalModuleReplacementPlugin(
       /^pages$/,
       'pages/index.async.js'
