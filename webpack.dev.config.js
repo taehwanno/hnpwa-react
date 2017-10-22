@@ -1,6 +1,10 @@
 const path = require('path');
 
-const webpack = require('webpack');
+const { optimize, HotModuleReplacementPlugin } = require('webpack');
+const {
+  CommonsChunkPlugin,
+} = optimize;
+
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -85,6 +89,7 @@ module.exports = () => {
       ],
     },
     plugins: [
+      new HotModuleReplacementPlugin(),
       new CopyWebpackPlugin([
         {
           context: paths.public,
@@ -96,8 +101,7 @@ module.exports = () => {
         markup: '<div id="root"></div>',
         inject: false,
       }),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({
+      new CommonsChunkPlugin({
         name: 'vendor',
         filename: '[name].bundle.js',
         minChunks: module => module.resource && (/node_modules/).test(module.resource),

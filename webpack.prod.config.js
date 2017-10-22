@@ -1,10 +1,16 @@
 const path = require('path');
 
-const webpack = require('webpack');
+const { optimize, LoaderOptionsPlugin, NormalModuleReplacementPlugin } = require('webpack');
+const {
+  CommonsChunkPlugin,
+  ModuleConcatenationPlugin,
+} = optimize;
+
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CSSOWebpackPlugin = require('csso-webpack-plugin').default;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -102,37 +108,34 @@ module.exports = webpackMerge(webpackBaseConfig, {
       allChunks: true,
       filename: 'app.bundle-[chunkhash].css',
     }),
-    new webpack.NormalModuleReplacementPlugin(
+    new CSSOWebpackPlugin(),
+    new NormalModuleReplacementPlugin(
       /^pages$/,
       'pages/index.async.js'
     ),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       name: ['vendor'],
       filename: '[name].bundle-[chunkhash].js',
       minChunks: module => module.resource && (/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       chunks: ['analytics'],
       async: 'async-analytics',
       minChunks: module => module.resource && (/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       chunks: ['user', 'item', 'feed'],
       async: 'async-commons',
       minChunks: (module, count) => module.resource && (/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
+    new CommonsChunkPlugin({
       chunks: ['user', 'item', 'feed'],
       async: 'commons',
       minChunks: (module, count) => module.resource && !(/node_modules/).test(module.resource),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime'
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-    }),
+    new CommonsChunkPlugin({ name: 'runtime' }),
+    new LoaderOptionsPlugin({ minimize: true, debug: false }),
+    new ModuleConcatenationPlugin(),
     new UglifyJsPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',
