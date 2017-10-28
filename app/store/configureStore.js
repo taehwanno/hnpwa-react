@@ -13,7 +13,7 @@ const configureStore = ({ routerMiddleware = null, preloadedState = Immutable.Ma
 
   let enhancer = applyMiddleware(...middlewares);
 
-  if (__DEV__) {
+  if (__DEV__ && !__SERVER__) {
     const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     enhancer = composeEnhancer(applyMiddleware(...middlewares));
   }

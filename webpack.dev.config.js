@@ -7,7 +7,6 @@ const {
 
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const paths = require('./paths');
 const webpackBaseConfig = require('./webpack.base.config');
@@ -17,9 +16,8 @@ module.exports = () => {
     cache: true,
     entry: {
       app: [
+        'webpack-hot-middleware/client',
         'react-hot-loader/patch',
-        'webpack-dev-server/client?http://0.0.0.0:8080',
-        'webpack/hot/only-dev-server',
         path.resolve(paths.app, 'client.jsx'),
       ],
     },
@@ -96,11 +94,6 @@ module.exports = () => {
           from: '*.*',
         },
       ]),
-      new HtmlWebpackPlugin({
-        template: path.join(paths.app, 'index.ejs'),
-        markup: '<div id="root"></div>',
-        inject: false,
-      }),
     ],
   });
 };

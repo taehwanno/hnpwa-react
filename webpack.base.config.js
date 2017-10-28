@@ -11,7 +11,7 @@ const {
 } = optimize;
 
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 const paths = require('./paths');
@@ -52,6 +52,22 @@ module.exports = {
   },
   plugins: [
     new CaseSensitivePathsPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.app, 'index.ejs'),
+      markup: '<div id="root"></div>',
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.app, 'index.ejs'),
+      filename: path.resolve(paths.functions, 'views/index.ejs'),
+      markup: `
+        <div id="root"><%- markup %></div>
+        <% if (state) { %>
+        <script>window.__PRELOADED_STATE__ = <%- state %></script>
+        <% } %>
+      `,
+      inject: false,
+    }),
     new PreloadWebpackPlugin({
       rel: 'preload',
       fileBlacklist: [/\.map/, /\.hot-update\.js$/],

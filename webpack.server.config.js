@@ -8,6 +8,8 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const paths = require('./paths');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: path.resolve(paths.app, 'server.jsx'),
   target: 'node',
@@ -47,7 +49,7 @@ module.exports = {
         loader: 'file-loader',
         options: {
           emitFile: false,
-          name: 'assets/[hash].[ext]',
+          name: isProd ? 'assets/[hash].[ext]' : '[path][name].[ext]',
         },
       },
     ]
@@ -58,6 +60,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': process.env.NODE_ENV === 'development',
       '__PROD__': process.env.NODE_ENV === 'production',
+      '__SERVER__': true,
     }),
     new NamedModulesPlugin(),
     new NoEmitOnErrorsPlugin(),

@@ -5,5 +5,6 @@ bundler/
 functions/
 scripts/
 
+devServer.js
 generate-sw.js
 webpack.*.config.js

@@ -11,7 +11,6 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CSSOWebpackPlugin = require('csso-webpack-plugin').default;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
@@ -87,22 +86,6 @@ module.exports = webpackMerge(webpackBaseConfig, {
         ignore: ['service-worker.js'],
       },
     ]),
-    new HtmlWebpackPlugin({
-      template: path.join(paths.app, 'index.ejs'),
-      markup: '<div id="root"></div>',
-      inject: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(paths.app, 'index.ejs'),
-      filename: path.resolve(paths.functions, 'views/index.ejs'),
-      markup: `
-        <div id="root"><%- markup %></div>
-        <% if (state) { %>
-        <script>window.__PRELOADED_STATE__ = <%- state %></script>
-        <% } %>
-      `,
-      inject: false,
-    }),
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'app.bundle-[chunkhash].css',
