@@ -1,8 +1,7 @@
 const path = require('path');
 
-const { optimize, LoaderOptionsPlugin, NormalModuleReplacementPlugin } = require('webpack');
+const { optimize, LoaderOptionsPlugin } = require('webpack');
 const {
-  CommonsChunkPlugin,
   ModuleConcatenationPlugin,
 } = optimize;
 
@@ -109,31 +108,6 @@ module.exports = webpackMerge(webpackBaseConfig, {
       filename: 'app.bundle-[chunkhash].css',
     }),
     new CSSOWebpackPlugin(),
-    new NormalModuleReplacementPlugin(
-      /^pages$/,
-      'pages/index.async.js'
-    ),
-    new CommonsChunkPlugin({
-      name: ['vendor'],
-      filename: '[name].bundle-[chunkhash].js',
-      minChunks: module => module.resource && (/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({
-      chunks: ['analytics'],
-      async: 'async-analytics',
-      minChunks: module => module.resource && (/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({
-      chunks: ['user', 'item', 'feed'],
-      async: 'async-commons',
-      minChunks: (module, count) => module.resource && (/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({
-      chunks: ['user', 'item', 'feed'],
-      async: 'commons',
-      minChunks: (module, count) => module.resource && !(/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({ name: 'runtime' }),
     new LoaderOptionsPlugin({ minimize: true, debug: false }),
     new ModuleConcatenationPlugin(),
     new UglifyJsPlugin(),

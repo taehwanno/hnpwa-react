@@ -101,11 +101,6 @@ module.exports = () => {
         markup: '<div id="root"></div>',
         inject: false,
       }),
-      new CommonsChunkPlugin({
-        name: 'vendor',
-        filename: '[name].bundle.js',
-        minChunks: module => module.resource && (/node_modules/).test(module.resource),
-      }),
     ],
   });
 };

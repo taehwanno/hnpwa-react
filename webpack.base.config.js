@@ -1,10 +1,14 @@
 const path = require('path');
 
 const {
+  optimize,
   DefinePlugin,
   NamedModulesPlugin,
   NoEmitOnErrorsPlugin,
 } = require('webpack');
+const {
+  CommonsChunkPlugin,
+} = optimize;
 
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -53,15 +57,22 @@ module.exports = {
       fileBlacklist: [/\.map/, /\.hot-update\.js$/],
       include: ['app', 'runtime', 'vendor'],
     }),
-    new PreloadWebpackPlugin(({
-      rel: 'prefetch',
-      include: ['feed', 'item', 'user'],
-    })),
     new DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': process.env.NODE_ENV === 'development',
       '__PROD__': process.env.NODE_ENV === 'production',
+      '__SERVER__': false,
     }),
+    new CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: module => module.resource && (/node_modules/).test(module.resource),
+    }),
+    new CommonsChunkPlugin({
+      chunks: ['analytics'],
+      async: 'async-analytics',
+      minChunks: module => module.resource && (/node_modules/).test(module.resource),
+    }),
+    new CommonsChunkPlugin({ name: 'runtime' }),
     new NamedModulesPlugin(),
     new NoEmitOnErrorsPlugin(),
   ],
