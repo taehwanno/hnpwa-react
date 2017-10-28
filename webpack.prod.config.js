@@ -1,8 +1,7 @@
 const path = require('path');
 
-const { optimize, LoaderOptionsPlugin, NormalModuleReplacementPlugin } = require('webpack');
+const { optimize, LoaderOptionsPlugin } = require('webpack');
 const {
-  CommonsChunkPlugin,
   ModuleConcatenationPlugin,
 } = optimize;
 
@@ -12,7 +11,6 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CSSOWebpackPlugin = require('csso-webpack-plugin').default;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
@@ -88,52 +86,11 @@ module.exports = webpackMerge(webpackBaseConfig, {
         ignore: ['service-worker.js'],
       },
     ]),
-    new HtmlWebpackPlugin({
-      template: path.join(paths.app, 'index.ejs'),
-      markup: '<div id="root"></div>',
-      inject: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(paths.app, 'index.ejs'),
-      filename: path.resolve(paths.functions, 'views/index.ejs'),
-      markup: `
-        <div id="root"><%- markup %></div>
-        <% if (state) { %>
-        <script>window.__PRELOADED_STATE__ = <%- state %></script>
-        <% } %>
-      `,
-      inject: false,
-    }),
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'app.bundle-[chunkhash].css',
     }),
     new CSSOWebpackPlugin(),
-    new NormalModuleReplacementPlugin(
-      /^pages$/,
-      'pages/index.async.js'
-    ),
-    new CommonsChunkPlugin({
-      name: ['vendor'],
-      filename: '[name].bundle-[chunkhash].js',
-      minChunks: module => module.resource && (/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({
-      chunks: ['analytics'],
-      async: 'async-analytics',
-      minChunks: module => module.resource && (/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({
-      chunks: ['user', 'item', 'feed'],
-      async: 'async-commons',
-      minChunks: (module, count) => module.resource && (/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({
-      chunks: ['user', 'item', 'feed'],
-      async: 'commons',
-      minChunks: (module, count) => module.resource && !(/node_modules/).test(module.resource),
-    }),
-    new CommonsChunkPlugin({ name: 'runtime' }),
     new LoaderOptionsPlugin({ minimize: true, debug: false }),
     new ModuleConcatenationPlugin(),
     new UglifyJsPlugin(),

@@ -1,8 +1,14 @@
 const path = require('path');
-const webpack = require('webpack');
+const {
+  DefinePlugin,
+  NamedModulesPlugin,
+  NoEmitOnErrorsPlugin,
+} = require('webpack');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const paths = require('./paths');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: path.resolve(paths.app, 'server.jsx'),
@@ -43,19 +49,20 @@ module.exports = {
         loader: 'file-loader',
         options: {
           emitFile: false,
-          name: 'assets/[hash].[ext]',
+          name: isProd ? 'assets/[hash].[ext]' : '[path][name].[ext]',
         },
       },
     ]
   },
   plugins: [
     new CaseSensitivePathsPlugin(),
-    new webpack.DefinePlugin({
+    new DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': process.env.NODE_ENV === 'development',
       '__PROD__': process.env.NODE_ENV === 'production',
+      '__SERVER__': true,
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new NamedModulesPlugin(),
+    new NoEmitOnErrorsPlugin(),
   ]
 };

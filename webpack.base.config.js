@@ -1,23 +1,20 @@
 const path = require('path');
 
 const {
+  optimize,
   DefinePlugin,
   NamedModulesPlugin,
   NoEmitOnErrorsPlugin,
 } = require('webpack');
+const {
+  CommonsChunkPlugin,
+} = optimize;
 
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 const paths = require('./paths');
-
-const workboxFilename = (postfix) => {
-  const pkgPath = path.resolve(__dirname, `node_modules/workbox-${postfix}/package.json`);
-  const pkgVersion = require(pkgPath).version;
-  const environment = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
-  return `workbox-${postfix}.${environment}.v${pkgVersion}.js`;
-};
 
 module.exports = {
   entry: {
@@ -55,30 +52,43 @@ module.exports = {
   },
   plugins: [
     new CaseSensitivePathsPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: `node_modules/workbox-sw/build/importScripts/${workboxFilename('sw')}`,
-        to: 'workbox-sw.js',
-      },
-      {
-        from: `node_modules/workbox-google-analytics/build/importScripts/${workboxFilename('google-analytics')}`,
-        to: 'workbox-google-analytics.js',
-      },
-    ]),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.app, 'index.ejs'),
+      markup: '<div id="root"></div>',
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.app, 'index.ejs'),
+      filename: path.resolve(paths.functions, 'views/index.ejs'),
+      markup: `
+        <div id="root"><%- markup %></div>
+        <% if (state) { %>
+        <script>window.__PRELOADED_STATE__ = <%- state %></script>
+        <% } %>
+      `,
+      inject: false,
+    }),
     new PreloadWebpackPlugin({
       rel: 'preload',
       fileBlacklist: [/\.map/, /\.hot-update\.js$/],
       include: ['app', 'runtime', 'vendor'],
     }),
-    new PreloadWebpackPlugin(({
-      rel: 'prefetch',
-      include: ['feed', 'item', 'user'],
-    })),
     new DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': process.env.NODE_ENV === 'development',
       '__PROD__': process.env.NODE_ENV === 'production',
+      '__SERVER__': false,
     }),
+    new CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: module => module.resource && (/node_modules/).test(module.resource),
+    }),
+    new CommonsChunkPlugin({
+      chunks: ['analytics'],
+      async: 'async-analytics',
+      minChunks: module => module.resource && (/node_modules/).test(module.resource),
+    }),
+    new CommonsChunkPlugin({ name: 'runtime' }),
     new NamedModulesPlugin(),
     new NoEmitOnErrorsPlugin(),
   ],

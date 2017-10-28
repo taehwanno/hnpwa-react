@@ -27,7 +27,7 @@ const render = () => {
   // eslint-disable-next-line global-require
   const AppShell = require('components/AppShell').default;
 
-  ReactDOM.render(
+  ReactDOM.hydrate(
     <AppContainer>
       <Provider store={store}>
         <ConnectedRouter history={history}>

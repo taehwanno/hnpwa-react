@@ -1,5 +1,5 @@
-importScripts('workbox-google-analytics.js');
-importScripts('workbox-sw.js');
+importScripts('https://unpkg.com/workbox-google-analytics@2.1.0/build/importScripts/workbox-google-analytics.prod.v2.1.0.js');
+importScripts('https://unpkg.com/workbox-sw@2.1.0/build/importScripts/workbox-sw.prod.v2.1.0.js');
 
 /* global workbox, WorkboxSW */
 
