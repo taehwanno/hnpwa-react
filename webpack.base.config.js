@@ -12,13 +12,6 @@ const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 const paths = require('./paths');
 
-const workboxFilename = (postfix) => {
-  const pkgPath = path.resolve(__dirname, `node_modules/workbox-${postfix}/package.json`);
-  const pkgVersion = require(pkgPath).version;
-  const environment = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
-  return `workbox-${postfix}.${environment}.v${pkgVersion}.js`;
-};
-
 module.exports = {
   entry: {
     vendor: [
@@ -55,16 +48,6 @@ module.exports = {
   },
   plugins: [
     new CaseSensitivePathsPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: `node_modules/workbox-sw/build/importScripts/${workboxFilename('sw')}`,
-        to: 'workbox-sw.js',
-      },
-      {
-        from: `node_modules/workbox-google-analytics/build/importScripts/${workboxFilename('google-analytics')}`,
-        to: 'workbox-google-analytics.js',
-      },
-    ]),
     new PreloadWebpackPlugin({
       rel: 'preload',
       fileBlacklist: [/\.map/, /\.hot-update\.js$/],
