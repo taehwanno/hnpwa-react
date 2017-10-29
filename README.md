@@ -1,6 +1,6 @@
 # HNPWA with React [![Build Status](https://circleci.com/gh/taehwanno/hnpwa-react/tree/master.svg?style=shield&circle-token=3f589df40a8f9d6303dee73907fbf91f9c09cc38)](https://circleci.com/gh/taehwanno/hnpwa-react/tree/master)
 
-> Hacker News readers as Progressive Web Apps with React, react-router, redux, Immutable.js
+> Hacker News readers as Progressive Web Apps with React, React Router, Redux, Immutable.js
 
 Live Demo: https://hnpwa-react.firebaseapp.com/
 
@@ -10,15 +10,16 @@ Live Demo: https://hnpwa-react.firebaseapp.com/
 
 # Features
 
-- Framework/UI libraries: React, react-router, redux, Immutable.js
+- Framework / UI libraries: React, React Router
+- State Management: Redux, Immutable.js
 - Module Bundling: Webpack
 - Service Worker
   - Application Shell
   - Data caching with [Workbox](https://workboxjs.org/)
-  - Offline Google Analytics with [`workbox-google-analytics`](https://workboxjs.org/reference-docs/latest/module-workbox-google-analytics.html)
+  - Offline Google Analytics with [workbox-google-analytics](https://workboxjs.org/reference-docs/latest/module-workbox-google-analytics.html)
 - Performance Patterns
+  - Client-side state & DOM hydration
   - Server-side data pre-fetching
-  - Route-based chunking
   - Preload / Prefetch resources
 - Hosting: Firebase
 - Server Side Rendering with Google Cloud Functions
@@ -40,13 +41,14 @@ $ cd functions && yarn install && cd ..
 # Scripts
 
 ```bash
-# Run webpack-dev-server at 8080 port
+# Run dev server at 8080 port
 $ yarn start
 
 # Analyze bundle with webpack-bundle-analyzer
 $ yarn analyze
+$ yarn analyze:cache
 
-# Lint with `eslint`, `scss-lint`
+# Lint with eslint, scss-lint
 $ yarn lint
 $ yarn lint:js
 $ yarn lint:scss
