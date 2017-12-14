@@ -76,8 +76,8 @@ export function fetchHackerNews(type, page) {
       .then(response =>
         response.json()
           .then(data => data.map((v) => {
-            const { comments_count, time_ago, ...rest } = v;
-            return { ...rest, commentsCount: comments_count, timeAgo: time_ago };
+            const { comments_count: commentsCount, time_ago: timeAgo, ...rest } = v;
+            return { ...rest, commentsCount, timeAgo };
           }))
           .then(data => dispatch(hackerNewsFetchSuccess(type, page, data))))
       .catch(error => dispatch(hackerNewsFetchFailure(error)));
