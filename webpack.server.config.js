@@ -27,13 +27,13 @@ module.exports = {
       pages: paths.pages,
       store: paths.store,
     },
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     strictExportPresence: true,
     rules: [
       {
-        exclude: /\.(jsx?|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
+        exclude: /\.(jsx?|tsx?|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
         loader: 'ignore-loader',
       },
       {
@@ -42,6 +42,13 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
+        },
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        options: {
+          useCache: true,
         },
       },
       {

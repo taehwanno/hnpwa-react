@@ -45,6 +45,13 @@ module.exports = () => {
           },
         },
         {
+          test: /\.tsx?$/,
+          loader: 'awesome-typescript-loader',
+          options: {
+            useCache: true,
+          },
+        },
+        {
           test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
           loader: 'file-loader',
           options: {

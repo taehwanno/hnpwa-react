@@ -10,6 +10,7 @@ const {
   CommonsChunkPlugin,
 } = optimize;
 
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
@@ -45,6 +46,12 @@ module.exports = {
         loader: 'eslint-loader',
       },
       {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'source-map-loader',
+      },
+      {
         test: /\.css$/,
         loader: 'css-loader',
       },
@@ -52,6 +59,7 @@ module.exports = {
   },
   plugins: [
     new CaseSensitivePathsPlugin(),
+    new TsConfigPathsPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(paths.app, 'index.ejs'),
       markup: '<div id="root"></div>',
@@ -100,7 +108,7 @@ module.exports = {
       pages: paths.pages,
       store: paths.store,
     },
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   stats: {
     colors: true,

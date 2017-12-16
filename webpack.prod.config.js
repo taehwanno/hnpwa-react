@@ -33,7 +33,11 @@ module.exports = webpackMerge(webpackBaseConfig, {
       {
         test: /\.jsx?$/,
         exclude: /node_modules\/(?!(autotrack|dom-utils))/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
