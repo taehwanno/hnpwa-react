@@ -9,13 +9,16 @@
     }
   },
   "rules": {
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": ["__PRELOADED_STATE__", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]
-      }
-    ],
-    "jsx-a11y/href-no-hash": 0
+    "jsx-a11y/href-no-hash": 0,
+    "import/extensions": ["error", {
+      "js": "never",
+      "jsx": "never",
+      "ts": "never",
+      "tsx": "never"
+    }],
+    "no-underscore-dangle": ["error", {
+      "allow": ["__PRELOADED_STATE__", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]
+    }]
   },
   "globals": {
     "__DEV__": false,

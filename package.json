@@ -16,6 +16,7 @@
     "deploy:stage": "firebase deploy --project hnpwa-react-stage --token=$FIREBASE_DEPLOY_TOKEN",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint app test --ext .js,.jsx",
+    "lint:ts": "tslint -c tslint.json 'app/**/*.{ts,tsx}'",
     "lint:scss": "bundle exec scss-lint app/",
     "ncu": "ncu",
     "precommit": "lint-staged",
@@ -32,6 +33,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint",
+    "*.{ts,tsx}": "tslint -c tslint.json",
     "*.{css,scss}": "bundle exec scss-lint"
   },
   "dependencies": {
@@ -138,6 +140,9 @@
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.19.0",
     "ts-jest": "^21.2.4",
+    "tslint": "^5.8.0",
+    "tslint-loader": "^3.5.3",
+    "tslint-react": "^3.2.0",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.1",

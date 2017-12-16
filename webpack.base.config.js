@@ -46,6 +46,12 @@ module.exports = {
         loader: 'eslint-loader',
       },
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         enforce: 'pre',
