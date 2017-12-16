@@ -1,14 +1,14 @@
 {
   "collectCoverageFrom": [
-    "app/**/*.{js,jsx}",
-    "!**/*.stories.{js,jsx}"
+    "app/**/*.{js,jsx,ts,tsx}",
+    "!**/*.stories.{js,jsx,ts,tsx}"
   ],
   "globals": {
     "__DEV__": false,
     "__PROD__": false,
     "__SERVER__": false
   },
-  "moduleFileExtensions": ["js", "jsx"],
+  "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
   "moduleNameMapper": {
     "\\.(css|scss)$": "<rootDir>/test/__mocks__/styleMock.js",
     "\\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$": "<rootDir>/test/__mocks__/fileMock.js",
@@ -27,8 +27,13 @@
     "<rootDir>/test/setup.js"
   ],
   "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "transformIgnorePatterns": [
     "node_modules/?!(autotrack|dom-utils)",
     "node_modules/?!(react-router/es)"
-  ]
+  ],
+  "transform": {
+    "^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.tsx?$": "ts-jest"
+  }
 }
