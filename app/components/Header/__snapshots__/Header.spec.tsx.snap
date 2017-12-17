@@ -12,7 +12,6 @@ exports[`<Header /> should match snapshot when render default 1`] = `
     <img
       alt="HNPWA Logo"
       className="Header__logo"
-      src="test-file-stub"
     />
   </Link>
   <NavLink
