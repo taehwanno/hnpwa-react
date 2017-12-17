@@ -1,20 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import './LoadingIndicator.scss';
 
-const propTypes = {
-  active: PropTypes.bool,
-  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
+export interface LoadingIndicatorProps {
+  active?: boolean;
+  style?: object;
+}
 
 const defaultProps = {
   active: false,
   style: {},
 };
 
-function LoadingIndicator({ active, style }) {
-  if (!active) return null;
+const LoadingIndicator: React.SFC<LoadingIndicatorProps> = ({
+  active,
+  style,
+ }) => {
+  if (!active) {
+    return null;
+  }
 
   return (
     <div className="LoadingIndicator" style={style}>
@@ -23,9 +27,8 @@ function LoadingIndicator({ active, style }) {
       <div className="LoadingIndicator__col" />
     </div>
   );
-}
+};
 
-LoadingIndicator.propTypes = propTypes;
 LoadingIndicator.defaultProps = defaultProps;
 
 export default LoadingIndicator;
