@@ -1,20 +1,19 @@
-import cx from 'classnames';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as cx from 'classnames';
+import * as React from 'react';
 
 import './Pagination.scss';
 
-const propTypes = {
-  currentPage: PropTypes.number,
-  onPaginate: PropTypes.func,
-};
+export interface IPaginationProps {
+  readonly currentPage?: number;
+  readonly onPaginate?: (value: number) => void;
+}
 
-const defaultProps = {
+const defaultProps: IPaginationProps = {
   currentPage: 1,
   onPaginate() {},
 };
 
-function Pagination({ currentPage, onPaginate }) {
+const Pagination: React.SFC<IPaginationProps> = ({ currentPage, onPaginate }) => {
   const prevDisabled = currentPage === 1;
   const nextDisabled = currentPage === 10;
 
@@ -52,9 +51,8 @@ function Pagination({ currentPage, onPaginate }) {
       </div>
     </div>
   );
-}
+};
 
-Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
 
 export default Pagination;
