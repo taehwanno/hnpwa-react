@@ -6,17 +6,17 @@ import LoadingIndicator from 'components/LoadingIndicator';
 
 import './HackerNewsList.scss';
 
-export interface HackerNewsListProps {
+export interface IHackerNewsListProps {
   feeds?: List<Map<any, any>>;
   isFetching?: boolean;
 }
 
-const defaultProps = {
+const defaultProps: IHackerNewsListProps = {
   feeds: List<Map<any, any>>(),
   isFetching: false,
 };
 
-const HackerNewsList: React.SFC<HackerNewsListProps> = ({ feeds, isFetching }) => {
+const HackerNewsList: React.SFC<IHackerNewsListProps> = ({ feeds, isFetching }) => {
   const haveNoItems = !isFetching && feeds.size === 0;
 
   return (

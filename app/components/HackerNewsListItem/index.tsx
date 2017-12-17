@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 import './HackerNewsListItem.scss';
 
-export interface HackerNewsListItemProps {
-  commentsCount?: number;
-  id?: number;
-  points?: number;
-  timeAgo?: string;
-  title?: string;
-  url?: string;
-  user?: string;
+export interface IHackerNewsListItemProps {
+  readonly commentsCount?: number;
+  readonly id?: number;
+  readonly points?: number;
+  readonly timeAgo?: string;
+  readonly title?: string;
+  readonly url?: string;
+  readonly user?: string;
 }
 
-const defaultProps = {
+const defaultProps: IHackerNewsListItemProps = {
   commentsCount: 0,
   id: 0,
   points: 0,
@@ -24,7 +24,7 @@ const defaultProps = {
   user: '',
 };
 
-const HackerNewsListItem: React.SFC<HackerNewsListItemProps> = ({
+const HackerNewsListItem: React.SFC<IHackerNewsListItemProps> = ({
   commentsCount,
   id,
   points,

@@ -2,7 +2,6 @@
   "extends": ["tslint:latest", "tslint-react"],
   "rules": {
     "arrow-parens": false,
-    "interface-name": false,
     "jsx-boolean-value": false,
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,

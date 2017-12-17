@@ -2,20 +2,20 @@ import * as React from 'react';
 
 import './LoadingIndicator.scss';
 
-export interface LoadingIndicatorProps {
-  active?: boolean;
-  style?: object;
+export interface ILoadingIndicatorProps {
+  readonly active?: boolean;
+  readonly style?: object;
 }
 
-const defaultProps = {
+const defaultProps: ILoadingIndicatorProps = {
   active: false,
   style: {},
 };
 
-const LoadingIndicator: React.SFC<LoadingIndicatorProps> = ({
+const LoadingIndicator: React.SFC<ILoadingIndicatorProps> = ({
   active,
   style,
- }) => {
+}) => {
   if (!active) {
     return null;
   }
