@@ -1,23 +1,22 @@
-import Immutable from 'immutable';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { List, Map } from 'immutable';
+import * as React from 'react';
 
 import HackerNewsListItem from 'components/HackerNewsListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 
 import './HackerNewsList.scss';
 
-const propTypes = {
-  feeds: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  isFetching: PropTypes.bool,
-};
+export interface HackerNewsListProps {
+  feeds?: List<Map<any, any>>;
+  isFetching?: boolean;
+}
 
 const defaultProps = {
-  feeds: Immutable.List(),
+  feeds: List<Map<any, any>>(),
   isFetching: false,
 };
 
-function HackerNewsList({ feeds, isFetching }) {
+const HackerNewsList: React.SFC<HackerNewsListProps> = ({ feeds, isFetching }) => {
   const haveNoItems = !isFetching && feeds.size === 0;
 
   return (
@@ -35,9 +34,8 @@ function HackerNewsList({ feeds, isFetching }) {
       )).toArray()}
     </ul>
   );
-}
+};
 
-HackerNewsList.propTypes = propTypes;
 HackerNewsList.defaultProps = defaultProps;
 
 export default HackerNewsList;
