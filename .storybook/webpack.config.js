@@ -1,4 +1,5 @@
 const path = require('path');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const paths = require('../paths');
 
@@ -13,10 +14,26 @@ module.exports = {
         loader: 'eslint-loader',
       },
       {
+        test: /\.stories.tsx?$/,
+        include: [paths.app],
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+      },
+      {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
         loader: 'file-loader',
         options: {
           name: '[path][name].[ext]',
+        },
+      },
+      {
+        test: /\.tsx?$/,
+        include: [paths.app],
+        exclude: /node_modules/,
+        loader: 'awesome-typescript-loader',
+        options: {
+          useCache: true,
         },
       },
       {
@@ -39,6 +56,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new TsConfigPathsPlugin(),
+  ],
   resolve: {
     alias: {
       assets: paths.assets,
@@ -47,5 +67,6 @@ module.exports = {
       pages: paths.pages,
       store: paths.store,
     },
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };

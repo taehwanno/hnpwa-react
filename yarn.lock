@@ -376,7 +376,40 @@
   version "16.0.30"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.30.tgz#cca9b180160004df574519c3d7c559fb181d545f"
 
-"@types/webpack-env@^1.13.3":
+"@types/storybook__addon-actions@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-actions/-/storybook__addon-actions-3.0.1.tgz#e76b6cc3e6221d6578962a2ae59c3c33b6762453"
+
+"@types/storybook__addon-info@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-info/-/storybook__addon-info-3.2.1.tgz#5314344763cfe8c32baa122145a2ee98efb173e0"
+  dependencies:
+    "@types/react" "*"
+
+"@types/storybook__addon-knobs@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-knobs/-/storybook__addon-knobs-3.2.1.tgz#d16f1e8d0bd4c52d0a3736ab93a5782493e82cf5"
+  dependencies:
+    "@types/react" "*"
+
+"@types/storybook__addon-links@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.0.2.tgz#4682c8ea5ccc1a68d5d8614007f33e901ab29d02"
+  dependencies:
+    "@types/react" "*"
+
+"@types/storybook__addon-options@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-options/-/storybook__addon-options-3.2.0.tgz#244dedfb1d548f5d42db994bcfa700220d65e9ef"
+
+"@types/storybook__react@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-3.0.5.tgz#aea4d67146a59de9cf5bacfe8bd24f7abd6128a6"
+  dependencies:
+    "@types/react" "*"
+    "@types/webpack-env" "*"
+
+"@types/webpack-env@*", "@types/webpack-env@^1.13.3":
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.3.tgz#0ecbe70f87341767793774d3683b51aa3246434c"
 

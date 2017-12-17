@@ -7,7 +7,7 @@ import './storybook.scss';
 
 setAddon(infoAddon);
 
-const req = require.context('../app', true, /\.stories\.jsx$/);
+const req = require.context('../app', true, /\.stories\.(jsx|tsx)$/);
 
 
 setOptions({
