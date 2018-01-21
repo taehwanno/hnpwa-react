@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 export const getById = state => state.get('byId');
 export const getCurrentPage = state => state.get('currentPage');
+export const getIsFetching = state => state.get('isFetching');
 export const getItems = state => state.get('items');
 export const getUser = state => state.get('user');
 

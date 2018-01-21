@@ -5,7 +5,7 @@ exports[`<HackerNewsList /> should match snapshot when render default 1`] = `
   className="HackerNewsList"
 >
   <LoadingIndicator
-    active={true}
+    active={false}
     style={
       Object {
         "left": "calc(50% - 24px)",
@@ -14,6 +14,11 @@ exports[`<HackerNewsList /> should match snapshot when render default 1`] = `
       }
     }
   />
+  <p
+    className="HackerNewsList__noti"
+  >
+    There are no items to show.
+  </p>
 </ul>
 `;
 

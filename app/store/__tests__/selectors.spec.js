@@ -9,6 +9,7 @@ describe('selectors', () => {
       posts: Immutable.Map(),
     },
     currentPage: 1,
+    isFetching: false,
     items: {
       ask: {},
       jobs: {},
@@ -25,6 +26,10 @@ describe('selectors', () => {
 
   it('should select currentPage', () => {
     expect(selectors.getCurrentPage(state)).toBe(state.get('currentPage'));
+  });
+
+  it('should select isFetching', () => {
+    expect(selectors.getIsFetching(state)).toBe(state.get('isFetching'));
   });
 
   it('should select items', () => {

@@ -13,7 +13,9 @@ stories
       {story()}
     </MemoryRouter>
   ))
-  .add('default', () => (
+  .add('fetching data', () => <HackerNewsList isFetching />)
+  .add('no data', () => <HackerNewsList feeds={Immutable.List()} isFetching={false} />)
+  .add('with data', () => (
     <HackerNewsList
       feeds={Immutable.fromJS([
         {

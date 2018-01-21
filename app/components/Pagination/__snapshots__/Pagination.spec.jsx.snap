@@ -9,6 +9,7 @@ exports[`<Pagination /> should match snapshot when render default 1`] = `
   >
     <button
       className="Pagination__button Pagination__button--disabled"
+      data-button="prev"
       disabled={true}
       onClick={[Function]}
       type="button"
@@ -16,9 +17,13 @@ exports[`<Pagination /> should match snapshot when render default 1`] = `
       &lt;
        Prev
     </button>
+    1
+     / 10
      
     <button
       className="Pagination__button"
+      data-button="next"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
