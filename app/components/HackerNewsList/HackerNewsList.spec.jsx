@@ -40,4 +40,9 @@ describe('<HackerNewsList />', () => {
     const wrapper = shallow(<HackerNewsList feeds={feeds} />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should have .HackerNewsList__noti when have no items', () => {
+    const wrapper = shallow(<HackerNewsList feeds={Immutable.List()} isFetching={false} />);
+    expect(wrapper.find('.HackerNewsList__noti')).toHaveLength(1);
+  });
 });
