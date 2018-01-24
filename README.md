@@ -5,7 +5,7 @@
 Live Demo: https://hnpwa-react.firebaseapp.com/
 
 <div align="center">
-  <img width="190" height="388" src="https://user-images.githubusercontent.com/7760903/31730158-0792a2c8-b46c-11e7-908c-1e0a3ad7e5bf.png">
+  <img width="190" height="388" src="https://user-images.githubusercontent.com/7760903/35339511-25858120-0164-11e8-997a-47902e4e8d8d.png">
 </div>
 
 # Features
