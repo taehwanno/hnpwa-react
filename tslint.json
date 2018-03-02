@@ -5,6 +5,7 @@
     "jsx-boolean-value": false,
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
+    "member-ordering": false,
     "no-empty": false,
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,

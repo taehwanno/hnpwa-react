@@ -1,7 +1,6 @@
-import cx from 'classnames';
-import Immutable from 'immutable';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as cx from 'classnames';
+import { List, Map } from 'immutable';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,28 +8,35 @@ import { makeGetChildrenComments, makeGetCommentContents } from 'store/selectors
 
 import './HackerNewsComment.scss';
 
-const propTypes = {
-  comments: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  contents: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
+interface IHackerNewsCommentInnerProps {
+  readonly comments?: List<number>;
+  readonly contents?: Map<string, string>;
+}
 
-const defaultProps = {
-  comments: Immutable.List(),
-  contents: Immutable.Map(),
-};
+interface IHackerNewsCommentInnerState {
+  collapse: boolean;
+}
 
-export class HackerNewsCommentInner extends React.Component {
-  constructor(props) {
+export class HackerNewsCommentInner extends React.Component<
+  IHackerNewsCommentInnerProps,
+  IHackerNewsCommentInnerState
+> {
+  public static defaultProps: IHackerNewsCommentInnerProps = {
+    comments: List<number>(),
+    contents: Map<string, string>(),
+  };
+
+  public constructor(props) {
     super(props);
     this.state = { collapse: false };
     this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
-  toggleCollapse() {
+  private toggleCollapse() {
     this.setState(prevState => ({ collapse: !prevState.collapse }));
   }
 
-  render() {
+  public render() {
     const { comments, contents } = this.props;
     const { collapse } = this.state;
 
@@ -69,12 +75,9 @@ export class HackerNewsCommentInner extends React.Component {
   }
 }
 
-HackerNewsCommentInner.propTypes = propTypes;
-HackerNewsCommentInner.defaultProps = defaultProps;
-
 const makeMapStateToProps = () => {
-  const getChildrenComments = makeGetChildrenComments();
-  const getCommentContents = makeGetCommentContents();
+  const getChildrenComments = makeGetChildrenComments() as any;
+  const getCommentContents = makeGetCommentContents() as any;
 
   return (state, props) => ({
     comments: getChildrenComments(state, props),

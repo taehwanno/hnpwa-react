@@ -1,5 +1,5 @@
-import Immutable from 'immutable';
-import React from 'react';
+import * as Immutable from 'immutable';
+import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import { HackerNewsCommentInner } from './';
@@ -12,9 +12,9 @@ describe('<HackerNewsComment />', () => {
 
   it('should render comments and contents', () => {
     const contents = Immutable.Map({
-      user: 'taehwanno',
-      timeAgo: '1 years ago',
       content: '<p>How you think React with TypeScript?</p>',
+      timeAgo: '1 years ago',
+      user: 'taehwanno',
     });
     const comments = Immutable.List([1, 2, 3, 4]);
     const wrapper = shallow(<HackerNewsCommentInner comments={comments} contents={contents} />);
