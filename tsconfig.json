@@ -6,6 +6,12 @@
     "target": "es5",
     "jsx": "react",
     "baseUrl": "./",
+    "lib": [
+      "dom",
+      "es5",
+      "es2015",
+      "scripthost"
+    ],
     "paths": {
       "assets/*": ["app/assets/*"],
       "components/*": ["app/components/*"],

@@ -1,25 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Map } from 'immutable';
+import * as React from 'react';
 
 import LoadingIndicator from 'components/LoadingIndicator';
 
 import './HackerNewsUser.scss';
 
-const propTypes = {
-  done: PropTypes.func,
-  information: PropTypes.shape({ created: PropTypes.string, karma: PropTypes.number }),
-  user: PropTypes.string.isRequired,
-  onUserFetch: PropTypes.func,
-};
+interface IHackerNewsUserProps {
+  readonly done?: () => void;
+  readonly information?: Map<string, any> | null;
+  readonly user: string;
+  readonly onUserFetch?: (arg: string) => Promise<any>;
+}
 
-const defaultProps = {
-  done() {},
-  information: null,
-  onUserFetch() { return Promise.resolve(); },
-};
+class HackerNewsUser extends React.Component<IHackerNewsUserProps> {
+  public static defaultProps: IHackerNewsUserProps = {
+    done: () => {},
+    information: null,
+    user: '',
+    onUserFetch: (arg: string) => Promise.resolve(),
+  };
 
-class HackerNewsUser extends React.Component {
-  componentWillMount() {
+  public componentWillMount() {
     const {
       done,
       information,
@@ -32,7 +33,7 @@ class HackerNewsUser extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     const { information, user } = this.props;
 
     if (!information) {
@@ -73,8 +74,5 @@ class HackerNewsUser extends React.Component {
     );
   }
 }
-
-HackerNewsUser.propTypes = propTypes;
-HackerNewsUser.defaultProps = defaultProps;
 
 export default HackerNewsUser;

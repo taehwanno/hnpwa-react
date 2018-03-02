@@ -1,5 +1,5 @@
-import Immutable from 'immutable';
-import React from 'react';
+import * as Immutable from 'immutable';
+import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import HackerNewsUser from './';
