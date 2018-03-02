@@ -1,4 +1,5 @@
-import React from 'react';
+import { List, Map } from 'immutable';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
 import HackerNewsComment from 'containers/HackerNewsComment';
@@ -7,24 +8,24 @@ import LoadingIndicator from 'components/LoadingIndicator';
 
 import './HackerNewsItem.scss';
 
-const propTypes = {
-  comments: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  done: PropTypes.func,
-  item: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  itemId: PropTypes.number,
-  onItemFetch: PropTypes.func,
-};
+interface IHackerNewsItemProps {
+  comments?: List<number> | null;
+  done?: () => void;
+  item?: Map<string, any> | null;
+  itemId?: number;
+  onItemFetch?: (arg: number) => Promise<any>;
+}
 
-const defaultProps = {
-  comments: null,
-  done() {},
-  item: null,
-  itemId: 0,
-  onItemFetch() { return Promise.resolve(); },
-};
+class HackerNewsItem extends React.Component<IHackerNewsItemProps> {
+  public static defaultProps = {
+    comments: null,
+    done() {},
+    item: null,
+    itemId: 0,
+    onItemFetch(arg: number) { return Promise.resolve(); },
+  };
 
-class HackerNewsItem extends React.Component {
-  componentWillMount() {
+  public componentWillMount() {
     const { done, item, itemId } = this.props;
 
     if (!item) {
@@ -32,7 +33,7 @@ class HackerNewsItem extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     const { comments, item } = this.props;
     if (!comments || !item) {
       return (
@@ -53,8 +54,5 @@ class HackerNewsItem extends React.Component {
     );
   }
 }
-
-HackerNewsItem.propTypes = propTypes;
-HackerNewsItem.defaultProps = defaultProps;
 
 export default HackerNewsItem;

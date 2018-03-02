@@ -1,5 +1,5 @@
-import Immutable from 'immutable';
-import React from 'react';
+import * as Immutable from 'immutable';
+import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import HackerNewsItem from './';
@@ -35,7 +35,7 @@ describe('<HackerNewsItem />', () => {
 
   it('should not calls props.onItemFetch in componentWillMount when the item does exist', () => {
     const onItemFetch = jest.fn();
-    shallow(<HackerNewsItem item={{}} onItemFetch={onItemFetch} />);
+    shallow(<HackerNewsItem item={Immutable.Map()} onItemFetch={onItemFetch} />);
     expect(onItemFetch.mock.calls.length).toBe(0);
   });
 });
