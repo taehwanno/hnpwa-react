@@ -1,57 +1,58 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import Pagination from 'components/Pagination';
 
-const propTypes = {
-  currentPage: PropTypes.number,
-  done: PropTypes.func,
-  feedCount: PropTypes.number,
-  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
-  location: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
-  onPaginate: PropTypes.func,
-};
+interface ILocationPaginationProps {
+  currentPage?: number;
+  done?: () => void;
+  feedCount?: number;
+  history: any;
+  location: any;
+  onPaginate?: (type: string, page: number) => Promise<any>;
+}
 
-const defaultProps = {
-  currentPage: 1,
-  done() {},
-  feedCount: 0,
-  onPaginate() { return Promise.resolve(); },
-};
+class LocationPagination extends React.Component<ILocationPaginationProps> {
+  public static defaultProps = {
+    currentPage: 1,
+    done() {},
+    feedCount: 0,
+    history: {},
+    location: {},
+    onPaginate: (type: string, page: number) => Promise.resolve(),
+  };
 
-class LocationPagination extends React.Component {
-  static getRequestQuery(pathname) {
+  public static getRequestQuery(pathname: string): string[] {
     return pathname.split('/').filter(v => !!v);
   }
 
-  constructor(props) {
+  public constructor(props: ILocationPaginationProps) {
     super(props);
     this.handlePaginate = this.handlePaginate.bind(this);
   }
 
-  componentWillMount() {
+  public componentWillMount() {
     const { done, feedCount } = this.props;
     const [type, stringPage] = LocationPagination.getRequestQuery(this.props.location.pathname);
     const page = parseInt(stringPage, 10);
 
     if (type && !Number.isNaN(page) && feedCount === 0) {
-      this.props.onPaginate(type, parseInt(page, 10)).then(done, done);
+      this.props.onPaginate(type, page).then(done, done);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  public componentWillReceiveProps(nextProps: ILocationPaginationProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       const [type, page] = LocationPagination.getRequestQuery(nextProps.location.pathname);
       this.props.onPaginate(type, parseInt(page, 10));
     }
   }
 
-  handlePaginate(page) {
+  private handlePaginate(page: number) {
     const [type] = LocationPagination.getRequestQuery(this.props.location.pathname);
     this.props.history.push(`/${type}/${page}`);
   }
 
-  render() {
+  public render() {
     const { currentPage } = this.props;
 
     return (
@@ -62,8 +63,5 @@ class LocationPagination extends React.Component {
     );
   }
 }
-
-LocationPagination.propTypes = propTypes;
-LocationPagination.defaultProps = defaultProps;
 
 export default LocationPagination;
