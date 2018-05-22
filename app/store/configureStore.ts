@@ -1,5 +1,5 @@
-import Immutable from 'immutable';
-import { createStore, applyMiddleware, compose } from 'redux';
+import * as Immutable from 'immutable';
+import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './rootReducer';

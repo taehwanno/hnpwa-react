@@ -1,8 +1,11 @@
 declare const __DEV__: boolean;
 declare const __PROD__: boolean;
+declare const __SERVER__: boolean;
 
-interface IWindow {
-  __PRELOADED_STATE__: object;
+// tslint:disable-next-line
+interface Window {
+  __PRELOADED_STATE__: any;
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: <R>(a: R) => R;
 }
 
 declare module '*.css' {
@@ -16,4 +19,4 @@ declare module '*.png' {
 declare module '*.scss' {
   const value: string;
   export default value;
- }
+}
