@@ -1,21 +1,31 @@
-import * as ACTIONS from '../actionTypes';
+import { combineActions, handleActions } from 'redux-actions';
 
-function itemsReducer(state = false, action) {
-  switch (action.type) {
-    case ACTIONS.HACKER_COMMENTS_FETCH_REQUEST:
-    case ACTIONS.HACKER_NEWS_FETCH_REQUEST:
-    case ACTIONS.HACKER_USER_FETCH_REQUEST:
-      return true;
-    case ACTIONS.HACKER_COMMENTS_FETCH_SUCCESS:
-    case ACTIONS.HACKER_COMMENTS_FETCH_FAILURE:
-    case ACTIONS.HACKER_NEWS_FETCH_SUCCESS:
-    case ACTIONS.HACKER_NEWS_FETCH_FAILURE:
-    case ACTIONS.HACKER_USER_FETCH_SUCCESS:
-    case ACTIONS.HACKER_USER_FETCH_FAILURE:
-      return false;
-    default:
-      return state;
-  }
-}
+import {
+  HACKER_COMMENTS_FETCH_REQUEST,
+  HACKER_COMMENTS_FETCH_SUCCESS,
+  HACKER_COMMENTS_FETCH_FAILURE,
+  HACKER_NEWS_FETCH_REQUEST,
+  HACKER_NEWS_FETCH_SUCCESS,
+  HACKER_NEWS_FETCH_FAILURE,
+  HACKER_USER_FETCH_REQUEST,
+  HACKER_USER_FETCH_SUCCESS,
+  HACKER_USER_FETCH_FAILURE,
+} from 'store/actionTypes';
 
-export default itemsReducer;
+const initialState = false;
+
+export default handleActions({
+  [combineActions(
+    HACKER_COMMENTS_FETCH_REQUEST,
+    HACKER_NEWS_FETCH_REQUEST,
+    HACKER_USER_FETCH_REQUEST,
+  )]: () => true,
+  [combineActions(
+    HACKER_COMMENTS_FETCH_SUCCESS,
+    HACKER_COMMENTS_FETCH_FAILURE,
+    HACKER_NEWS_FETCH_SUCCESS,
+    HACKER_NEWS_FETCH_FAILURE,
+    HACKER_USER_FETCH_SUCCESS,
+    HACKER_USER_FETCH_FAILURE,
+  )]: () => false,
+}, initialState);
