@@ -1,11 +1,9 @@
-import Immutable from 'immutable';
-
 import * as ACTIONS from 'store/actionTypes';
 import posts from 'store/comments/posts';
 
 describe('comments.posts reducer', () => {
   it('should return the initial state', () => {
-    expect(posts(undefined, {})).toEqual(Immutable.Map());
+    expect(posts(undefined, {})).toEqual({});
   });
 
   it('should handle HACKER_COMMENTS_FETCH_SUCCESS', () => {
@@ -23,8 +21,8 @@ describe('comments.posts reducer', () => {
         url: 'http://joostdevblog.blogspot.com/2011/12/lamest-bug-we-ever-encountered.html',
         domain: 'joostdevblog.blogspot.com',
       },
-    })).toEqual(Immutable.Map(new Map([
-      [3338485, Immutable.Map({
+    })).toEqual({
+      3338485: {
         commentsCount: 40,
         id: 3338485,
         title: 'Lamest bug we ever encountered',
@@ -35,7 +33,7 @@ describe('comments.posts reducer', () => {
         type: 'link',
         url: 'http://joostdevblog.blogspot.com/2011/12/lamest-bug-we-ever-encountered.html',
         domain: 'joostdevblog.blogspot.com',
-      })],
-    ])));
+      },
+    });
   });
 });

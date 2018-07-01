@@ -1,4 +1,3 @@
-import * as Immutable from 'immutable';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -10,10 +9,10 @@ import HackerNewsComment from './';
 
 const stories = storiesOf('HackerNewsComment', module);
 
-const comments = Immutable.Map({
-  byId: Immutable.Map([
-    [3340746, Immutable.Map({
-      comments: Immutable.List(),
+const comments = {
+  byId: {
+    3340746: {
+      comments: [],
       // tslint:disable-next-line:max-line-length
       content: '<p>You\'re right. But it was after that pain-staking experience that I became fully engrossed in using unittests for all non-trivial functionality. Live and learn.',
       id: 3340746,
@@ -23,9 +22,9 @@ const comments = Immutable.Map({
       timeAgo: '6 years ago',
       time_ago: '6 years ago',
       user: 'akg',
-    })],
-    [3339842, Immutable.Map({
-      comments: Immutable.List([3340746]),
+    },
+    3339842: {
+      comments: [3340746],
       // tslint:disable-next-line:max-line-length
       content: '<p>If I have to venture a guess, I guess you didn\'t have a comprehensive set of tests at the function/method level of the code? Having that would probably have caught the bug, because you would have written a test for correctly executing the code in that branch.',
       id: 3339842,
@@ -35,12 +34,12 @@ const comments = Immutable.Map({
       timeAgo: '6 years ago',
       time_ago: '6 years ago',
       user: 'Confusion',
-    })],
-  ]),
-  posts: Immutable.Map(),
-});
+    },
+  },
+  posts: {},
+};
 
-const preloadedState = Immutable.Map({ comments });
+const preloadedState = { comments };
 
 const store = createStore(rootReducer, preloadedState);
 
@@ -50,7 +49,7 @@ stories
       <Provider store={store}>
         <HackerNewsComment
           commentId={3339842}
-          comments={Immutable.List([3340746])}
+          comments={[3340746]}
         />
       </Provider>
     </MemoryRouter>

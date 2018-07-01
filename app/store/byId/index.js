@@ -1,17 +1,18 @@
-import Immutable from 'immutable';
 import * as ACTIONS from '../actionTypes';
 
-const initialState = Immutable.Map();
+const initialState = {};
 
 function byIdReducer(state = initialState, action) {
-  let newState = state;
-
   switch (action.type) {
     case ACTIONS.HACKER_NEWS_FETCH_SUCCESS:
-      action.payload.data.forEach((v) => {
-        newState = newState.set(v.id, Immutable.Map(v));
-      });
-      return newState;
+      return {
+        ...state,
+        ...action.payload.data.reduce((newState, v) => {
+          // eslint-disable-next-line no-param-reassign
+          newState[v.id] = v;
+          return newState;
+        }, {}),
+      };
     default:
       return state;
   }

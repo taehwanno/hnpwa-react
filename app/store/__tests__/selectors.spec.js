@@ -1,12 +1,11 @@
-import Immutable from 'immutable';
 import * as selectors from '../selectors';
 
 describe('selectors', () => {
-  const state = Immutable.fromJS({
+  const state = {
     byId: {},
     comments: {
-      byId: Immutable.Map(),
-      posts: Immutable.Map(),
+      byId: {},
+      posts: {},
     },
     currentPage: 1,
     isFetching: false,
@@ -17,23 +16,23 @@ describe('selectors', () => {
       news: {},
       show: {},
     },
-    user: Immutable.Map(),
-  });
+    user: {},
+  };
 
   it('should select byId', () => {
-    expect(selectors.getById(state)).toEqual(state.get('byId'));
+    expect(selectors.getById(state)).toEqual(state.byId);
   });
 
   it('should select currentPage', () => {
-    expect(selectors.getCurrentPage(state)).toBe(state.get('currentPage'));
+    expect(selectors.getCurrentPage(state)).toBe(state.currentPage);
   });
 
   it('should select isFetching', () => {
-    expect(selectors.getIsFetching(state)).toBe(state.get('isFetching'));
+    expect(selectors.getIsFetching(state)).toBe(state.isFetching);
   });
 
   it('should select items', () => {
-    expect(selectors.getItems(state)).toEqual(state.get('items'));
+    expect(selectors.getItems(state)).toEqual(state.items);
   });
 
   it('should select props.type', () => {
@@ -42,53 +41,52 @@ describe('selectors', () => {
   });
 
   describe('getFeeds', () => {
-    it('should return Immutable.List when specific type feeds not exist in current page', () => {
-      expect(selectors.getFeeds(state, { type: 'news' })).toEqual(Immutable.List());
+    it('should return empty array when specific type feeds not exist in current page', () => {
+      expect(selectors.getFeeds(state, { type: 'news' })).toEqual([]);
     });
 
     it('should return feeds when specific type feeds exist in current page', () => {
       const props = { type: 'ask' };
-      const currentState = Immutable.Map({
-        byId: Immutable.Map(new Map([
-          [1, { title: 'React with TypeScript', id: 1 }],
-          [2, { title: 'TypeScript vs Flow', id: 2 }],
-        ])),
+      const currentState = {
+        byId: {
+          1: { title: 'React with TypeScript', id: 1 },
+          2: { title: 'TypeScript vs Flow', id: 2 },
+        },
         currentPage: 1,
-        items: Immutable.Map({
-          ask: Immutable.Map(new Map([
-            [1, Immutable.List([1, 2])],
-          ])),
-          jobs: Immutable.Map(),
-          newest: Immutable.Map(),
-          news: Immutable.Map(),
-          show: Immutable.Map(),
-        }),
-      });
+        items: {
+          ask: {
+            1: [1, 2],
+          },
+          jobs: {},
+          newest: {},
+          news: {},
+          show: {},
+        },
+      };
       expect(selectors.getFeeds(currentState, props))
-        .toEqual(currentState
-          .getIn(['items', 'ask', currentState.get('currentPage')])
-          .map(id => currentState.getIn(['byId', id])));
+        .toEqual(currentState.items.ask[currentState.currentPage]
+          .map(id => currentState.byId[id]));
     });
   });
 
   it('should return feed count', () => {
     const props = { type: 'ask' };
-    const currentState = Immutable.Map({
-      byId: Immutable.Map(new Map([
-        [1, { title: 'React with TypeScript', id: 1 }],
-        [2, { title: 'TypeScript vs Flow', id: 2 }],
-      ])),
+    const currentState = {
+      byId: {
+        1: { title: 'React with TypeScript', id: 1 },
+        2: { title: 'TypeScript vs Flow', id: 2 },
+      },
       currentPage: 1,
-      items: Immutable.Map({
-        ask: Immutable.Map(new Map([
-          [1, Immutable.List([1, 2])],
-        ])),
-        jobs: Immutable.Map(),
-        newest: Immutable.Map(),
-        news: Immutable.Map(),
-        show: Immutable.Map(),
-      }),
-    });
+      items: {
+        ask: {
+          1: [1, 2],
+        },
+        jobs: {},
+        newest: {},
+        news: {},
+        show: {},
+      },
+    };
 
     expect(selectors.getFeedCount(state, props)).toBe(0);
     expect(selectors.getFeedCount(currentState, props)).toBe(2);
@@ -106,22 +104,22 @@ describe('selectors', () => {
 
     it('should return user information when specific user exist', () => {
       const props = { user: 'taehwanno' };
-      const currentState = Immutable.Map({
-        user: Immutable.Map({
+      const currentState = {
+        user: {
           taehwanno: {
             id: 'taehwanno',
             karma: 0,
             created: '3 years ago',
           },
-        }),
-      });
+        },
+      };
       expect(selectors.getSpecificUser(currentState, props))
-        .toEqual(currentState.getIn(['user', 'taehwanno']));
+        .toEqual(currentState.user.taehwanno);
     });
   });
 
   it('should select comments', () => {
-    expect(selectors.getComments(state)).toEqual(state.get('comments'));
+    expect(selectors.getComments(state)).toEqual(state.comments);
   });
 
   it('should select props.commentId', () => {
@@ -135,11 +133,11 @@ describe('selectors', () => {
   });
 
   it('should select comments.byId', () => {
-    expect(selectors.getCommentsById(state)).toEqual(state.getIn(['comments', 'byId']));
+    expect(selectors.getCommentsById(state)).toEqual(state.comments.byId);
   });
 
   it('should select comments.posts', () => {
-    expect(selectors.getCommentsPosts(state)).toEqual(state.getIn(['comments', 'posts']));
+    expect(selectors.getCommentsPosts(state)).toEqual(state.comments.posts);
   });
 
   describe('getItem', () => {
@@ -148,46 +146,52 @@ describe('selectors', () => {
     });
 
     it('should return item when matched itemId\'s comment exist', () => {
-      const comment = Immutable.Map();
-      expect(selectors.getItem(Immutable.Map({
-        comments: Immutable.Map({
-          posts: Immutable.Map(new Map([
-            [1234, comment],
-          ])),
-        }),
-      }), { itemId: 1234 })).toEqual(comment);
+      const comment = {};
+      expect(selectors.getItem({
+        comments: {
+          posts: {
+            1234: comment,
+          },
+        },
+      }, { itemId: 1234 })).toEqual(comment);
     });
   });
 
   it('should select matched id\'s comments', () => {
-    const comment = Immutable.Map({ comments: Immutable.List([1, 2]) });
-    const currentState = Immutable.Map({
-      comments: Immutable.Map({
-        byId: Immutable.Map(new Map([[4321, comment]])),
-      }),
-    });
+    const comment = { comments: [1, 2] };
+    const currentState = {
+      comments: {
+        byId: {
+          4321: comment,
+        },
+      },
+    };
     expect(selectors.getChildrenComments(currentState, { commentId: 4321 }))
-      .toEqual(comment.get('comments'));
+      .toEqual(comment.comments);
   });
 
   it('should return selector that select children comments', () => {
-    const comment = Immutable.Map({ comments: Immutable.List([1, 2]) });
-    const currentState = Immutable.Map({
-      comments: Immutable.Map({
-        byId: Immutable.Map(new Map([[4321, comment]])),
-      }),
-    });
+    const comment = { comments: [1, 2] };
+    const currentState = {
+      comments: {
+        byId: {
+          4321: comment,
+        },
+      },
+    };
     const getChildrenComments = selectors.makeGetChildrenComments();
-    expect(getChildrenComments(currentState, { commentId: 4321 })).toEqual(comment.get('comments'));
+    expect(getChildrenComments(currentState, { commentId: 4321 })).toEqual(comment.comments);
   });
 
   it('should return selector that select comment contents', () => {
-    const comment = Immutable.Map();
-    const currentState = Immutable.Map({
-      comments: Immutable.Map({
-        byId: Immutable.Map(new Map([[4321, comment]])),
-      }),
-    });
+    const comment = {};
+    const currentState = {
+      comments: {
+        byId: {
+          4321: comment,
+        },
+      },
+    };
     const getCommentContents = selectors.makeGetCommentContents();
     expect(getCommentContents(currentState, { commentId: 4321 })).toEqual(comment);
   });

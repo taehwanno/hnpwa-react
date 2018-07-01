@@ -1,4 +1,3 @@
-import { List, Map } from 'immutable';
 import * as React from 'react';
 
 import HackerNewsListItem from 'components/HackerNewsListItem';
@@ -7,17 +6,28 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import './HackerNewsList.scss';
 
 export interface IHackerNewsListProps {
-  feeds?: List<Map<any, any>>;
+  feeds?: Array<{
+    commentsCount: number,
+    domain: string,
+    id: number,
+    points: number,
+    time: number,
+    timeAgo: string,
+    title: string,
+    type: string,
+    url: string,
+    user: string,
+  }>;
   isFetching?: boolean;
 }
 
 const defaultProps: IHackerNewsListProps = {
-  feeds: List<Map<any, any>>(),
+  feeds: [],
   isFetching: false,
 };
 
 const HackerNewsList: React.SFC<IHackerNewsListProps> = ({ feeds, isFetching }) => {
-  const haveNoItems = !isFetching && feeds.size === 0;
+  const haveNoItems = !isFetching && feeds.length === 0;
 
   return (
     <ul className="HackerNewsList">
@@ -27,11 +37,11 @@ const HackerNewsList: React.SFC<IHackerNewsListProps> = ({ feeds, isFetching }) 
       />
       {haveNoItems && <p className="HackerNewsList__noti">There are no items to show.</p>}
       {!isFetching && feeds.map((feed, index) => (
-        <li className="HackerNewsList__item" key={feed.get('id')}>
+        <li className="HackerNewsList__item" key={feed.id}>
           <span className="HackerNewsList__index">{index + 1}</span>
-          <HackerNewsListItem {...feed.toJS()} />
+          <HackerNewsListItem {...feed} />
         </li>
-      )).toArray()}
+      ))}
     </ul>
   );
 };

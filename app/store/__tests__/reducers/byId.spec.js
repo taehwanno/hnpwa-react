@@ -1,23 +1,13 @@
-import Immutable from 'immutable';
-
 import * as ACTIONS from 'store/actionTypes';
 import byId from 'store/byId';
 
 describe('byId reducer', () => {
   it('should return the initial state', () => {
-    expect(byId(undefined, {})).toEqual(Immutable.Map());
+    expect(byId(undefined, {})).toEqual({});
   });
 
   it('should handle HACKER_NEWS_FETCH_SUCCESS', () => {
-    const secondState = Immutable.Map(new Map([
-      [
-        1, Immutable.Map({
-          id: 1,
-          title: 'Interview with Mr. Money Mustache',
-        }),
-      ]]));
-
-    expect(byId(Immutable.Map(), {
+    expect(byId({}, {
       type: ACTIONS.HACKER_NEWS_FETCH_SUCCESS,
       payload: {
         data: [
@@ -27,9 +17,19 @@ describe('byId reducer', () => {
           },
         ],
       },
-    })).toEqual(secondState);
+    })).toEqual({
+      1: {
+        id: 1,
+        title: 'Interview with Mr. Money Mustache',
+      },
+    });
 
-    expect(byId(secondState, {
+    expect(byId({
+      1: {
+        id: 1,
+        title: 'Interview with Mr. Money Mustache',
+      },
+    }, {
       type: ACTIONS.HACKER_NEWS_FETCH_SUCCESS,
       payload: {
         data: [
@@ -39,12 +39,15 @@ describe('byId reducer', () => {
           },
         ],
       },
-    })).toEqual(secondState.set(
-      2,
-      Immutable.Map({
+    })).toEqual({
+      1: {
+        id: 1,
+        title: 'Interview with Mr. Money Mustache',
+      },
+      2: {
         id: 2,
         title: 'React with TypeScript',
-      }),
-    ));
+      },
+    });
   });
 });

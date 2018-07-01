@@ -1,10 +1,9 @@
-import * as Immutable from 'immutable';
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './rootReducer';
 
-const configureStore = ({ routerMiddleware = null, preloadedState = Immutable.Map() } = {}) => {
+const configureStore = ({ routerMiddleware = null, preloadedState = {} } = {}) => {
   const middlewares = [thunk];
 
   if (routerMiddleware) {

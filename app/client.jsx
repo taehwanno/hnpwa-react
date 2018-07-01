@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import transit from 'transit-immutable-js';
 
 import configureStore from 'store/configureStore';
 import { history, middleware as routerMiddleware } from 'store/history';
@@ -16,10 +15,7 @@ import './scss/style.scss';
 const preloadedState = window.__PRELOADED_STATE__;
 delete window.__PRELOADED_STATE__;
 
-const store = configureStore({
-  preloadedState: preloadedState ? transit.fromJSON(preloadedState) : undefined,
-  routerMiddleware,
-});
+const store = configureStore({ preloadedState, routerMiddleware });
 
 const MOUNT_NODE = document.getElementById('root');
 

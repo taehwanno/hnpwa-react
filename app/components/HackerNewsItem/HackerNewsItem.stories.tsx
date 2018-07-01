@@ -1,4 +1,3 @@
-import * as Immutable from 'immutable';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -11,9 +10,9 @@ import HackerNewsItem from './';
 
 const stories = storiesOf('HackerNewsItem', module);
 
-const comments = Immutable.Map({
-  byId: Immutable.Map([
-    [3340746, Immutable.Map({
+const comments = {
+  byId: {
+    3340746: {
       id: 3340746,
       level: 2,
       user: 'akg',
@@ -22,10 +21,10 @@ const comments = Immutable.Map({
       timeAgo: '6 years ago',
       // tslint:disable-next-line:max-line-length
       content: '<p>You\'re right. But it was after that pain-staking experience that I became fully engrossed in using unittests for all non-trivial functionality. Live and learn.',
-      comments: Immutable.List(),
+      comments: [],
       parent: 3339842,
-    })],
-    [3339842, Immutable.Map({
+    },
+    3339842: {
       id: 3339842,
       level: 1,
       user: 'Confusion',
@@ -34,10 +33,10 @@ const comments = Immutable.Map({
       timeAgo: '6 years ago',
       // tslint:disable-next-line:max-line-length
       content: '<p>If I have to venture a guess, I guess you didn\'t have a comprehensive set of tests at the function/method level of the code? Having that would probably have caught the bug, because you would have written a test for correctly executing the code in that branch.',
-      comments: Immutable.List([3340746]),
+      comments: [3340746],
       parent: 3338903,
-    })],
-    [3338903, Immutable.Map({
+    },
+    3338903: {
       id: 3338903,
       level: 0,
       user: 'akg',
@@ -46,10 +45,10 @@ const comments = Immutable.Map({
       timeAgo: '6 years ago',
       // tslint:disable-next-line:max-line-length
       content: '<p>Reminds me of the time I had written a physical simulation engine back in grad school and there was a "minus" sign error. Of course, the error was rare enough that we didn\'t notice it until after the code was used in a real production environment. Tracking down one minus sign in several hundred thousands of lines is a pain. Not to mention the uneasy feeling you get after you solve it, "How was everything ever working correctly before!? What else did we overlook?"',
-      comments: Immutable.List([3339842]),
+      comments: [3339842],
       parent: 3338485,
-    })],
-    [3339723, Immutable.Map({
+    },
+    3339723: {
       id: 3339723,
       level: 0,
       user: 'TwoBit',
@@ -58,10 +57,10 @@ const comments = Immutable.Map({
       timeAgo: '6 years ago',
       // tslint:disable-next-line:max-line-length
       content: '<p>They could have solved that bug with one developer in ten minutes by just telling the PS3 to generate a core dump and running addr2line.exe on the core dump report\'s callstacks.<p>And the report places the blame on the server instead of their code. Clearly it\'s their code\'s fault for doing blocking sockets calls in a main thread.',
-      comments: Immutable.List(),
+      comments: [],
       parent: 3338485,
-    })],
-    [3338485, Immutable.Map({
+    },
+    3338485: {
       id: 3338485,
       title: 'Lamest bug we ever encountered',
       points: 76,
@@ -74,13 +73,13 @@ const comments = Immutable.Map({
       domain: 'joostdevblog.blogspot.com',
       comments_count: 23,
       commentsCount: 23,
-      comments: Immutable.List([3338903, 3339723]),
-    })],
-  ]),
-  posts: Immutable.Map(),
-});
+      comments: [3338903, 3339723],
+    },
+  },
+  posts: {},
+};
 
-const preloadedState = Immutable.Map({ comments });
+const preloadedState = { comments };
 
 const store = createStore(rootReducer, preloadedState);
 
@@ -89,8 +88,8 @@ stories
     <MemoryRouter initialEntries={['/item/3338485']}>
       <Provider store={store}>
         <HackerNewsItem
-          comments={Immutable.List([3340746, 3339842, 3338903, 3339723])}
-          item={Immutable.Map({
+          comments={[3340746, 3339842, 3338903, 3339723]}
+          item={{
             commentsCount: 23,
             id: 3338485,
             timeAgo: '6 years ago',
@@ -98,7 +97,7 @@ stories
             points: 76,
             user: 'exch',
             url: 'http://joostdevblog.blogspot.com/2011/12/lamest-bug-we-ever-encountered.html',
-          })}
+          }}
           itemId={3338485}
           onItemFetch={action('onItemFetch')}
         />

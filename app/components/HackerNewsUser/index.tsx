@@ -1,4 +1,3 @@
-import { Map } from 'immutable';
 import * as React from 'react';
 
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -7,7 +6,7 @@ import './HackerNewsUser.scss';
 
 interface IHackerNewsUserProps {
   readonly done?: () => void;
-  readonly information?: Map<string, any> | null;
+  readonly information?: { created: string, karma: number } | null;
   readonly user: string;
   readonly onUserFetch?: (arg: string) => Promise<any>;
 }
@@ -55,11 +54,11 @@ class HackerNewsUser extends React.Component<IHackerNewsUserProps> {
             </tr>
             <tr>
               <td>Created: </td>
-              <td>{information.get('created')}</td>
+              <td>{information.created}</td>
             </tr>
             <tr>
               <td>Karma: </td>
-              <td>{information.get('karma')}</td>
+              <td>{information.karma}</td>
             </tr>
           </tbody>
         </table>

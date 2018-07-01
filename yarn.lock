@@ -5863,7 +5863,7 @@ ignore@^3.3.3:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.5.tgz#c4e715455f6073a8d7e5dae72d2fc9d71663dba6"
 
-immutable@^3.8.1, immutable@^3.8.2:
+immutable@^3.8.1:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 
@@ -9940,10 +9940,6 @@ redux-actions@^2.4.0:
     lodash-es "^4.17.4"
     reduce-reducers "^0.1.0"
 
-redux-immutable@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/redux-immutable/-/redux-immutable-4.0.0.tgz#3a1a32df66366462b63691f0e1dc35e472bbc9f3"
-
 redux-mock-store@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.3.0.tgz#6edfef0d2332f20576381069d6d889a6d0a4451c"
@@ -11553,14 +11549,6 @@ toxic@^1.0.0:
 tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
-
-transit-immutable-js@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/transit-immutable-js/-/transit-immutable-js-0.7.0.tgz#993e25089b6311ff402140f556276d6d253005d9"
-
-transit-js@^0.8.846:
-  version "0.8.846"
-  resolved "https://registry.yarnpkg.com/transit-js/-/transit-js-0.8.846.tgz#76e06e8f0e6be27675e3442112f5c9bb75343464"
 
 trim-newlines@^1.0.0:
   version "1.0.0"

@@ -1,4 +1,3 @@
-import * as Immutable from 'immutable';
 import * as nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -118,7 +117,7 @@ describe('actions', () => {
             },
           },
         ];
-        const store = mockStore({ comments: Immutable.Map() });
+        const store = mockStore({ comments: {} });
 
         return store.dispatch(actions.fetchHackerComments(id)).then(() => {
           expect(store.getActions()).toEqual(expectedActions);
@@ -143,7 +142,7 @@ describe('actions', () => {
             error: true,
           },
         ];
-        const store = mockStore({ user: Immutable.Map() });
+        const store = mockStore({ user: {} });
 
         return store.dispatch(actions.fetchHackerComments(id)).catch(() => {
           expect(store.getActions()).toEqual(expectedActions);
@@ -353,7 +352,7 @@ describe('actions', () => {
             },
           },
         ];
-        const store = mockStore({ user: Immutable.Map() });
+        const store = mockStore({ user: {} });
 
         return store.dispatch(actions.fetchHackerUser(id)).then(() => {
           expect(store.getActions()).toEqual(expectedActions);
@@ -378,7 +377,7 @@ describe('actions', () => {
             error: true,
           },
         ];
-        const store = mockStore({ user: Immutable.Map() });
+        const store = mockStore({ user: {} });
 
         return store.dispatch(actions.fetchHackerUser(id)).catch(() => {
           expect(store.getActions()).toEqual(expectedActions);

@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux-immutable';
+import { combineReducers } from 'redux';
 
 import byId from './byId';
 import posts from './posts';

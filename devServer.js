@@ -7,7 +7,6 @@ const fetch = require('node-fetch');
 const express = require('express');
 const ejs = require('ejs');
 const serialize = require('serialize-javascript');
-const transit = require('transit-immutable-js');
 const requireFromString = require('require-from-string');
 
 const paths = require('./paths.js');
@@ -63,7 +62,7 @@ app.get('*', (req, res) => {
   allEnvironmentReady.then(() => {
     render(req.url)
       .then(({ markup, state }) =>
-        res.send(ejs.render(indexView, { markup, state: serialize(transit.toJSON(state)) })))
+        res.send(ejs.render(indexView, { markup, state: serialize(state) })))
   });
 });
 

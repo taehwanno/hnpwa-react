@@ -1,4 +1,3 @@
-import * as Immutable from 'immutable';
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
@@ -11,7 +10,7 @@ describe('<HackerNewsList />', () => {
   });
 
   it('should match snapshot when render feeds', () => {
-    const feeds = Immutable.fromJS([
+    const feeds = [
       {
         commentsCount: 79,
         domain: 'observer.com',
@@ -36,13 +35,13 @@ describe('<HackerNewsList />', () => {
         url: 'https://www.nytimes.com/2017/09/27/magazine/when-not-guilty-is-a-life-sentence.html',
         user: 'mcone',
       },
-    ]);
+    ];
     const wrapper = shallow(<HackerNewsList feeds={feeds} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should have .HackerNewsList__noti when have no items', () => {
-    const wrapper = shallow(<HackerNewsList feeds={Immutable.List()} isFetching={false} />);
+    const wrapper = shallow(<HackerNewsList feeds={[]} isFetching={false} />);
     expect(wrapper.find('.HackerNewsList__noti')).toHaveLength(1);
   });
 });

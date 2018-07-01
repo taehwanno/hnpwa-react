@@ -15,9 +15,9 @@ exports[`<HackerNewsComment /> should match snapshot when render default 1`] = `
     </button>
      
     <Link
-      href="/user/undefined"
+      href="/user/"
       replace={false}
-      to="/user/undefined"
+      to="/user/"
     />
      
     <span />
@@ -29,7 +29,7 @@ exports[`<HackerNewsComment /> should match snapshot when render default 1`] = `
       className="HackerNewsComment__content"
       dangerouslySetInnerHTML={
         Object {
-          "__html": undefined,
+          "__html": "",
         }
       }
     />

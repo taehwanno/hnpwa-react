@@ -1,4 +1,3 @@
-import * as Immutable from 'immutable';
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -14,10 +13,10 @@ stories
     </MemoryRouter>
   ))
   .add('fetching data', () => <HackerNewsList isFetching />)
-  .add('no data', () => <HackerNewsList feeds={Immutable.List()} isFetching={false} />)
+  .add('no data', () => <HackerNewsList feeds={[]} isFetching={false} />)
   .add('with data', () => (
     <HackerNewsList
-      feeds={Immutable.fromJS([
+      feeds={[
         {
           commentsCount: 79,
           domain: 'observer.com',
@@ -162,6 +161,6 @@ stories
           url: 'http://www.metmuseum.org/blogs/in-season/2016/hunt-and-house',
           user: 'benbreen',
         },
-      ])}
+      ]}
     />
   ));

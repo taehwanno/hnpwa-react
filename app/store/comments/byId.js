@@ -1,27 +1,28 @@
-import Immutable from 'immutable';
 import * as ACTIONS from '../actionTypes';
 
-const initialState = Immutable.Map();
+const initialState = {};
 
 function byId(state = initialState, action) {
   switch (action.type) {
     // eslint-disable-next-line no-case-declarations
     case ACTIONS.HACKER_COMMENTS_FETCH_SUCCESS:
-      let newState = state;
+      const newState = { ...state };
       action.payload.comments.forEach((comment) => {
-        newState = newState.set(comment.id, Immutable.Map({
+        newState[comment.id] = {
           ...comment,
-          comments: Immutable.List(comment.comments),
-        }));
+          comments: comment.comments,
+        };
       });
 
-      return newState.set(action.payload.id, Immutable.Map({
+      newState[action.payload.id] = {
         ...action.payload,
         commentsCount: action.payload.comments_count,
-        comments: Immutable.List(action.payload.comments
+        comments: action.payload.comments
           .filter(v => v.parent === action.payload.id)
-          .map(v => v.id)),
-      }));
+          .map(v => v.id),
+      };
+
+      return newState;
     default:
       return state;
   }

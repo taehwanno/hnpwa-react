@@ -1,6 +1,6 @@
 # HNPWA with React [![Build Status](https://circleci.com/gh/taehwanno/hnpwa-react/tree/master.svg?style=shield&circle-token=3f589df40a8f9d6303dee73907fbf91f9c09cc38)](https://circleci.com/gh/taehwanno/hnpwa-react/tree/master)
 
-> Hacker News readers as Progressive Web Apps with React, React Router, Redux, Immutable.js
+> Hacker News readers as Progressive Web Apps with React, React Router, Redux
 
 Live Demo: https://hnpwa-react.firebaseapp.com/
 
@@ -11,7 +11,7 @@ Live Demo: https://hnpwa-react.firebaseapp.com/
 # Features
 
 - Framework / UI libraries: React, React Router
-- State Management: Redux, Immutable.js
+- State Management: Redux
 - Module Bundling: Webpack
 - Service Worker
   - Application Shell

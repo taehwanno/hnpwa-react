@@ -21,16 +21,13 @@ module.exports = {
   entry: {
     vendor: [
       'classnames',
-      'immutable',
       'react',
       'prop-types',
       'react-dom',
       'react-redux',
       'redux',
-      'redux-immutable',
       'redux-thunk',
       'reselect',
-      'transit-immutable-js',
       'whatwg-fetch',
     ],
   },

@@ -1,5 +1,4 @@
 import * as cx from 'classnames';
-import { List, Map } from 'immutable';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,12 +8,16 @@ import { makeGetChildrenComments, makeGetCommentContents } from 'store/selectors
 import './HackerNewsComment.scss';
 
 interface IHackerNewsCommentInnerProps {
-  readonly comments?: List<number>;
-  readonly contents?: Map<string, string>;
+  readonly comments?: number[];
+  readonly contents?: {
+    readonly content: string;
+    readonly timeAgo: string;
+    readonly user: string;
+  };
 }
 
 interface IHackerNewsCommentInnerState {
-  collapse: boolean;
+  readonly collapse: boolean;
 }
 
 export class HackerNewsCommentInner extends React.Component<
@@ -22,8 +25,12 @@ export class HackerNewsCommentInner extends React.Component<
   IHackerNewsCommentInnerState
 > {
   public static defaultProps: IHackerNewsCommentInnerProps = {
-    comments: List<number>(),
-    contents: Map<string, string>(),
+    comments: [],
+    contents: {
+      content: '',
+      timeAgo: '',
+      user: '',
+    },
   };
 
   public constructor(props) {
@@ -55,20 +62,20 @@ export class HackerNewsCommentInner extends React.Component<
           </button>
           {' '}
           <Link
-            href={`/user/${contents.get('user')}`}
-            to={`/user/${contents.get('user')}`}
+            href={`/user/${contents.user}`}
+            to={`/user/${contents.user}`}
           >
-            {contents.get('user')}
+            {contents.user}
           </Link>
           {' '}
-          <span>{contents.get('timeAgo')}</span>
+          <span>{contents.timeAgo}</span>
         </div>
         <div className={innerClassName}>
           <div
             className="HackerNewsComment__content"
-            dangerouslySetInnerHTML={{ __html: contents.get('content') }} // eslint-disable-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: contents.content }} // eslint-disable-line react/no-danger
           />
-          {comments.map(id => <HackerNewsComment commentId={id} key={id} />).toArray()}
+          {comments.map(id => <HackerNewsComment commentId={id} key={id} />)}
         </div>
       </div>
     );

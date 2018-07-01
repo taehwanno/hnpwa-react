@@ -1,6 +1,4 @@
-import { List, Map } from 'immutable';
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import HackerNewsComment from 'containers/HackerNewsComment';
 import HackerNewsListItem from 'components/HackerNewsListItem';
@@ -9,9 +7,9 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import './HackerNewsItem.scss';
 
 interface IHackerNewsItemProps {
-  comments?: List<number> | null;
+  comments?: number[] | null;
   done?: () => void;
-  item?: Map<string, any> | null;
+  item?: any;
   itemId?: number;
   onItemFetch?: (arg: number) => Promise<any>;
 }
@@ -47,9 +45,9 @@ class HackerNewsItem extends React.Component<IHackerNewsItemProps> {
     return (
       <div className="HackerNewsItem">
         <div className="HackerNewsItem__content">
-          <HackerNewsListItem {...item.toJS()} />
+          <HackerNewsListItem {...item} />
         </div>
-        {comments.map(id => <HackerNewsComment commentId={id} key={id} />).toArray()}
+        {comments.map(id => <HackerNewsComment commentId={id} key={id} />)}
       </div>
     );
   }

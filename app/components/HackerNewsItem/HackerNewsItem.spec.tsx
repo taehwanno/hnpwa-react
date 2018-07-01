@@ -1,4 +1,3 @@
-import * as Immutable from 'immutable';
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
@@ -11,7 +10,7 @@ describe('<HackerNewsItem />', () => {
   });
 
   it('should render <HackerNewsListItem /> and <HackerNewsCommentContainer />', () => {
-    const item = Immutable.Map({
+    const item = {
       commentsCount: 14,
       id: 1,
       timeAgo: '6 years ago',
@@ -19,8 +18,8 @@ describe('<HackerNewsItem />', () => {
       points: 14,
       user: 'taehwanno',
       url: 'https://github.com/taehwanno',
-    });
-    const comments = Immutable.List([1, 2, 3, 4]);
+    };
+    const comments = [1, 2, 3, 4];
     const wrapper = shallow(<HackerNewsItem comments={comments} item={item} />);
     expect(wrapper).toMatchSnapshot();
   });
@@ -29,13 +28,13 @@ describe('<HackerNewsItem />', () => {
     const itemId = 1;
     const onItemFetch = jest.fn(() => Promise.resolve());
     shallow(<HackerNewsItem itemId={itemId} onItemFetch={onItemFetch} />);
-    expect(onItemFetch.mock.calls.length).toBe(1);
-    expect(onItemFetch.mock.calls[0]).toEqual([itemId]);
+    expect(onItemFetch).toHaveBeenCalledTimes(1);
+    expect(onItemFetch).toHaveBeenCalledWith(itemId);
   });
 
   it('should not calls props.onItemFetch in componentWillMount when the item does exist', () => {
     const onItemFetch = jest.fn();
-    shallow(<HackerNewsItem item={Immutable.Map()} onItemFetch={onItemFetch} />);
-    expect(onItemFetch.mock.calls.length).toBe(0);
+    shallow(<HackerNewsItem item={{}} onItemFetch={onItemFetch} />);
+    expect(onItemFetch).not.toHaveBeenCalled();
   });
 });

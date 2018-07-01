@@ -1,4 +1,3 @@
-import * as Immutable from 'immutable';
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
@@ -11,12 +10,12 @@ describe('<HackerNewsComment />', () => {
   });
 
   it('should render comments and contents', () => {
-    const contents = Immutable.Map({
+    const contents = {
       content: '<p>How you think React with TypeScript?</p>',
       timeAgo: '1 years ago',
       user: 'taehwanno',
-    });
-    const comments = Immutable.List([1, 2, 3, 4]);
+    };
+    const comments = [1, 2, 3, 4];
     const wrapper = shallow(<HackerNewsCommentInner comments={comments} contents={contents} />);
     expect(wrapper).toMatchSnapshot();
   });

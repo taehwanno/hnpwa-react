@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux-immutable';
+import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 import byId from './byId';
