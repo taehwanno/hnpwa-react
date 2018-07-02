@@ -83,8 +83,8 @@ export class HackerNewsCommentInner extends React.Component<
 }
 
 const makeMapStateToProps = () => {
-  const getChildrenComments = makeGetChildrenComments() as any;
-  const getCommentContents = makeGetCommentContents() as any;
+  const getChildrenComments = makeGetChildrenComments();
+  const getCommentContents = makeGetCommentContents();
 
   return (state, props) => ({
     comments: getChildrenComments(state, props),
