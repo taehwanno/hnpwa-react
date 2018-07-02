@@ -3,7 +3,7 @@ import posts from 'store/comments/posts';
 
 describe('comments.posts reducer', () => {
   it('should return the initial state', () => {
-    expect(posts(undefined, {})).toEqual({});
+    expect(posts(undefined, { type: 'DUMMY_ACTION' })).toEqual({});
   });
 
   it('should handle HACKER_COMMENTS_FETCH_SUCCESS', () => {

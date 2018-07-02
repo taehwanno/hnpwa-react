@@ -3,7 +3,7 @@ import currentPage from 'store/currentPage';
 
 describe('currentPage reducer', () => {
   it('should return the initial state', () => {
-    expect(currentPage(undefined, {})).toBe(1);
+    expect(currentPage(undefined, { type: 'DUMMY_ACTION' })).toBe(1);
   });
 
   it('should handle HACKER_NEWS_FETCH_REQUEST', () => {

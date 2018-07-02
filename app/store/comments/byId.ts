@@ -3,11 +3,29 @@ import { handleActions } from 'redux-actions';
 import {
   HACKER_COMMENTS_FETCH_SUCCESS,
 } from 'store/actionTypes';
+import {
+  Actions,
+} from 'store/actions';
 
-const initialState = {};
+export interface ICommentsByIdState {
+  [key: number]: {
+    id: number;
+    title: string;
+    points: number;
+    user: string;
+    time: string;
+    type: string;
+    url: string;
+    domain: string;
+    comments: number[],
+    timeAgo: string;
+    commentsCount: number;
+  };
+}
+const initialState: ICommentsByIdState = {};
 
 export default handleActions({
-  [HACKER_COMMENTS_FETCH_SUCCESS]: (state, action) => {
+  [HACKER_COMMENTS_FETCH_SUCCESS]: (state: ICommentsByIdState, action: Actions) => {
     const newState = { ...state };
     action.payload.comments.forEach((comment) => {
       newState[comment.id] = {

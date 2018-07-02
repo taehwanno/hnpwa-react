@@ -3,7 +3,7 @@ import byId from 'store/byId';
 
 describe('byId reducer', () => {
   it('should return the initial state', () => {
-    expect(byId(undefined, {})).toEqual({});
+    expect(byId(undefined, { type: 'DUMMY_ACTION' })).toEqual({});
   });
 
   it('should handle HACKER_NEWS_FETCH_SUCCESS', () => {

@@ -3,7 +3,7 @@ import user from 'store/user';
 
 describe('user reducer', () => {
   it('should return the initial state', () => {
-    expect(user(undefined, {})).toEqual({});
+    expect(user(undefined, { type: 'DUMMY_ACTION' })).toEqual({});
   });
 
   it('should handle HACKER_USER_FETCH_SUCCESS', () => {

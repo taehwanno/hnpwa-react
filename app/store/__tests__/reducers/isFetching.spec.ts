@@ -3,7 +3,7 @@ import isFetching from 'store/isFetching';
 
 describe('isFetching reducer', () => {
   it('should return the initial state', () => {
-    expect(isFetching(undefined, {})).toBe(false);
+    expect(isFetching(undefined, { type: 'DUMMY_ACTION' })).toBe(false);
   });
 
   it('should handle HACKER_COMMENTS_FETCH_REQUEST', () => {

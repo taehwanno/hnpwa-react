@@ -3,7 +3,7 @@ import items from 'store/items';
 
 describe('items reducer', () => {
   it('should return the initial state', () => {
-    expect(items(undefined, {})).toEqual({
+    expect(items(undefined, { type: 'DUMMY_ACTION' })).toEqual({
       ask: {},
       jobs: {},
       newest: {},
