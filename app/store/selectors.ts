@@ -12,7 +12,9 @@ export const getFeeds = createSelector(
   (byId, currentPage, items, type) => {
     const feeds = items[type][currentPage];
 
-    if (!feeds) return [];
+    if (!feeds) {
+      return [];
+    }
 
     return feeds.map(id => byId[id]);
   },
@@ -28,7 +30,9 @@ export const getSpecificUser = createSelector(
   (user, id) => {
     const information = user[id];
 
-    if (!information) return null;
+    if (!information) {
+      return null;
+    }
     return information;
   },
 );
@@ -51,7 +55,9 @@ export const getItem = createSelector(
   (commentsPosts, itemId) => {
     const item = commentsPosts[itemId];
 
-    if (!item) return null;
+    if (!item) {
+      return null;
+    }
     return item;
   },
 );
