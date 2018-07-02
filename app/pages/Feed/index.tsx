@@ -1,14 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import HackerNewsListContainer from 'containers/HackerNewsListContainer';
 import LocationPaginationContainer from 'containers/LocationPaginationContainer';
 
-const propTypes = {
-  location: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
-};
+export interface IFeedRouteProps {
+  readonly location: {
+    pathname: string;
+  };
+}
 
-function FeedRoute({ location }) {
+const FeedRoute: React.SFC<IFeedRouteProps> = ({ location }) => {
   const feedType = location.pathname.split('/').slice(1)[0];
 
   return (
@@ -19,8 +20,6 @@ function FeedRoute({ location }) {
       </div>
     </div>
   );
-}
-
-FeedRoute.propTypes = propTypes;
+};
 
 export default FeedRoute;

@@ -1,13 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import HackerNewsItemContainer from 'containers/HackerNewsItemContainer';
 
-const propTypes = {
-  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
-};
+export interface IItemRouteProps {
+  readonly match: {
+    readonly params: {
+      id: string;
+    };
+  };
+}
 
-function ItemRoute({ match }) {
+const ItemRoute: React.SFC<IItemRouteProps> = ({ match }) => {
   const id = parseInt(match.params.id, 10);
 
   return (
@@ -15,8 +18,6 @@ function ItemRoute({ match }) {
       <HackerNewsItemContainer commentId={id} itemId={id} />
     </div>
   );
-}
-
-ItemRoute.propTypes = propTypes;
+};
 
 export default ItemRoute;

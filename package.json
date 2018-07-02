@@ -72,6 +72,7 @@
     "@types/jest": "^21.1.8",
     "@types/react": "^16.0.31",
     "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^6.0.3",
     "@types/react-router-dom": "^4.2.3",
     "@types/react-router-redux": "^5.0.15",
     "@types/storybook__addon-actions": "^3.0.1",
